@@ -66,7 +66,7 @@ const listItems = [
         <Box>
           <Typography
             variant="h1"
-            className="font-bold text-4xl p-7 text-white"
+            sx={{fontWeight: 'bold', fontSize: '38px', padding: '20px', color: 'white'}}
           >
             <span className="text-accent">Plan</span>
             It
