@@ -27,7 +27,7 @@ export default function BasicModal() {
             top: "40%",
             left: "55%",
             transform: "translate(-50%, -50%)",
-            width: 600,
+            width: 500,
             bgcolor: "#181818",
             padding: 4,
           }}

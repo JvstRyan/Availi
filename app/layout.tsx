@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "@/theme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   title: "PlanIt",
 };
 
-const queryClient = new QueryClient();
+// const queryClient = new QueryClient();
 
 export default function RootLayout({
   children,
@@ -22,9 +23,9 @@ export default function RootLayout({
     <ThemeProvider theme={theme}>
     <html lang="en">
       <body className={inter.className}>
-        <QueryClientProvider client={queryClient}>
-        {children}
-        </QueryClientProvider>
+       <ReactQueryProvider>
+        <div>{children}</div>
+        </ReactQueryProvider>
       </body>
     </html>
     </ThemeProvider>

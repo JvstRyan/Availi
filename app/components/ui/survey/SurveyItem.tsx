@@ -7,7 +7,17 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const SurveyItem = () => {
+interface DateInt {
+    incomingDate: Date
+}
+
+const SurveyItem = ({incomingDate}: DateInt)  => {
+
+   const date = new Date(incomingDate);
+   const day = date.getDate();
+   const month = date.toLocaleString('default', {month: 'long'});
+
+
   return (
     <>
       <Box
@@ -21,27 +31,7 @@ const SurveyItem = () => {
         }}
       >
         <Typography fontWeight={"bold"} fontSize={"18px"}>
-          Aanwezig 3 Maart?
-        </Typography>
-        <FormControlLabel
-          control={<Checkbox color="secondary" checked={true} />}
-          label="Wel"
-          sx={{ marginTop: "10px" }}
-        />
-        <FormControlLabel control={<Checkbox checked={false} />} label="Niet" />
-      </Box>
-      <Box
-        sx={{
-          backgroundColor: "#181818",
-          display: "flex",
-          flexDirection: "column",
-          padding: "30px",
-          borderRadius: "10px",
-          marginBottom: "10px",
-        }}
-      >
-        <Typography fontWeight={"bold"} fontSize={"18px"}>
-          Aanwezig 3 Maart?
+          {`Aanwezig ${day} ${month} ?`}
         </Typography>
         <FormControlLabel
           control={<Checkbox color="secondary" checked={true} />}
