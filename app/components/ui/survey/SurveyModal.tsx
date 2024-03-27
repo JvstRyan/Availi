@@ -18,7 +18,7 @@ export default function BasicModal() {
         size="large"
         color="secondary"
       >
-        Nieuwe lijst
+        Nieuwe Enquete
       </Button>
       <Modal open={open} onClose={handleClose}>
         <Box

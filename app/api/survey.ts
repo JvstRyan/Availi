@@ -6,6 +6,8 @@ import axios from "axios";
     date: Date
 }
 
+
+
 export const getAllDates = async () => 
 {
     try 
@@ -16,7 +18,7 @@ export const getAllDates = async () =>
         return response.data
       }
       else {
-        throw new Error('Request failed')
+        throw new Error('Get request failed')
       }
         
     }
@@ -25,4 +27,25 @@ export const getAllDates = async () =>
         console.error(error)
         throw error;
     }
+}
+
+
+export const postDates = async (datesList: {dates: string[] | undefined}) => 
+{
+    try 
+    {
+        const response = await axios.post('https://localhost:7220/api/Survey', datesList)
+
+        if(response && response.data) 
+             return response.data
+         else 
+         {
+             throw new Error('Post request failed')
+         }
+    }
+    catch(error) {
+        console.error(error)
+        throw error;
+    }
+   
 }

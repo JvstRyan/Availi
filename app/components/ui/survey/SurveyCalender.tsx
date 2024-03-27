@@ -1,14 +1,43 @@
 "use client"
 
-import React from 'react';
+import { postDates } from '@/app/api/survey';
+import { Box, Button } from '@mui/material';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import React, { useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
 export default function SurveyCalender() {
-  const initialDays: Date[] = [];
-  const [days, setDays] = React.useState<Date[] | undefined>(initialDays);
 
- console.log(days)
+  const [days, setDays] = useState<Date[] | undefined>([])
+
+
+  const queryClient = useQueryClient()
+
+  const mutation = useMutation
+  ({
+      mutationFn: postDates,
+      onSuccess: () => 
+      {
+          queryClient.invalidateQueries({queryKey: ['dates']})
+      }
+  })
+
+  const createDates = () => 
+  {
+    const formattedDates = days?.map(day => 
+    {
+        const date = new Date(day.getFullYear(), day.getMonth(), day.getDate());
+        const timezoneOffsetInMilliseconds = date.getTimezoneOffset() * 60 * 1000;
+        date.setTime(date.getTime() - timezoneOffsetInMilliseconds);
+
+        return date.toISOString().split('T')[0];
+    })
+    mutation.mutate({dates: formattedDates})
+  }
+
+
+
   const footer =
     days && days.length > 0 ? (
       <p className='mt-5'>Je hebt {days.length} datum(s) gekozen.</p>
@@ -18,6 +47,7 @@ export default function SurveyCalender() {
 
   return (
 <>
+    <Box className="flex flex-col justify-center items-center gap-5">
     <DayPicker
       mode="multiple"
       min={1}
@@ -33,6 +63,8 @@ export default function SurveyCalender() {
         selected: {backgroundColor: '#526BA1', color: 'white'},
       }}
     />
+    <Button onClick={createDates} className='w-5/6' variant='outlined' color='secondary'>Enquete aamaken</Button>
+    </Box>
 </>
   );
 }

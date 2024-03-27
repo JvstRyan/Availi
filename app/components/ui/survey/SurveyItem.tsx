@@ -15,6 +15,7 @@ const SurveyItem = ({incomingDate}: DateInt)  => {
 
    const date = new Date(incomingDate);
    const day = date.getDate();
+   const weekDay = date.toLocaleString('default', {weekday: 'long'})
    const month = date.toLocaleString('default', {month: 'long'});
 
 
@@ -31,7 +32,7 @@ const SurveyItem = ({incomingDate}: DateInt)  => {
         }}
       >
         <Typography fontWeight={"bold"} fontSize={"18px"}>
-          {`Aanwezig ${day} ${month} ?`}
+          {`Aanwezig ${weekDay} ${day} ${month} ?`}
         </Typography>
         <FormControlLabel
           control={<Checkbox color="secondary" checked={true} />}
