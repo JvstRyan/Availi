@@ -33,7 +33,7 @@ export default function BasicModal() {
           }}
         >
         <Box className="flex justify-center items-center flex-col gap-5">
-          <SurveyCalender />
+          <SurveyCalender handleClose={handleClose} />
           </Box>
         </Box>
       </Modal>

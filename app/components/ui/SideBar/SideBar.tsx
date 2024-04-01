@@ -15,6 +15,7 @@ import { FaRegPaperPlane } from "react-icons/fa";
 import { PiUsers } from "react-icons/pi";
 import { IoIosCheckboxOutline } from "react-icons/io";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import Link from "next/link";
 
 
 
@@ -28,16 +29,16 @@ const listItems = [
   { icon: <BsHouseDoor size={"25px"} color="white" />, text: "Overzicht"},
   {
     icon: <AiOutlineAudio size={"25px"} color="white" />,
-    text: "Audio / Video", 
+    text: "Audio / Video", link: '/dashboard/survey'
   },
   {
     icon: <FaRegPaperPlane size={"22px"} color="white" />,
-    text: "Nieuw schema", 
+    text: "Nieuw schema", link: '/dashboard/survey'
   },
-  { icon: <PiUsers size={"24px"} color="white" />, text: "Gebruikers",  },
+  { icon: <PiUsers size={"24px"} color="white" />, text: "Gebruikers", link: '/dashboard/users'  },
   {
     icon: <IoIosCheckboxOutline size={"25px"} color="white" />,
-    text: "Aanwezigen", 
+    text: "Aanwezigen", link: '/dashboard/survey'
   },
 ];
   return (
@@ -76,8 +77,9 @@ const listItems = [
               <ListItemButton
                 key={index}
                 sx={{ "&:hover": { backgroundColor: "#313131"} }}
+                component="a" href={item.link}
               >
-                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemIcon sx={{marginLeft: '25px'}}>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItemButton>
             ))}

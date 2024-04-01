@@ -1,15 +1,13 @@
 "use client"
 
-import { getAllDates, postDates } from "@/app/api/survey";
-import SurveyItem from "@/app/components/ui/survey/SurveyItem";
-import SurveyModal from "@/app/components/ui/survey/SurveyModal";
-import { Box, Button } from "@mui/material";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React from "react";
+import { getAllDates } from "@/app/api/survey";
+import SurveyItem from "@/app/dashboard/survey/SurveyItem";
+import SurveyModal from "@/app/dashboard/survey/SurveyModal";
+import { Box } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
 
 const page = () => {
 
-    const queryClient = useQueryClient()
 
     const { data } = useQuery
     ({
