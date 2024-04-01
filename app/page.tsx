@@ -1,4 +1,4 @@
-import SideBar from "./components/ui/sidebar/SideBar";
+import SideBar from "./components/SideBar";
 
 export default function Login() {
   return (

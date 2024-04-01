@@ -1,4 +1,3 @@
-
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -17,30 +16,36 @@ import { IoIosCheckboxOutline } from "react-icons/io";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import Link from "next/link";
 
-
-
-
 export default function SideBar() {
+  const drawerWidth = 300;
 
-
-const drawerWidth = 300;
-
-const listItems = [
-  { icon: <BsHouseDoor size={"25px"} color="white" />, text: "Overzicht", link: '/dashboard'},
-  {
-    icon: <AiOutlineAudio size={"25px"} color="white" />,
-    text: "Audio / Video", link: '/dashboard/survey'
-  },
-  {
-    icon: <FaRegPaperPlane size={"22px"} color="white" />,
-    text: "Nieuw schema", link: '/dashboard/survey'
-  },
-  { icon: <PiUsers size={"24px"} color="white" />, text: "Gebruikers", link: '/dashboard/users'  },
-  {
-    icon: <IoIosCheckboxOutline size={"25px"} color="white" />,
-    text: "Aanwezigen", link: '/dashboard/survey'
-  },
-];
+  const listItems = [
+    {
+      icon: <BsHouseDoor size={"25px"} color="white" />,
+      text: "Overzicht",
+      link: "/dashboard",
+    },
+    {
+      icon: <AiOutlineAudio size={"25px"} color="white" />,
+      text: "Audio / Video",
+      link: "/dashboard/survey",
+    },
+    {
+      icon: <FaRegPaperPlane size={"22px"} color="white" />,
+      text: "Nieuw schema",
+      link: "/dashboard/survey",
+    },
+    {
+      icon: <PiUsers size={"24px"} color="white" />,
+      text: "Gebruikers",
+      link: "/dashboard/users",
+    },
+    {
+      icon: <IoIosCheckboxOutline size={"25px"} color="white" />,
+      text: "Aanwezigen",
+      link: "/dashboard/survey",
+    },
+  ];
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -67,7 +72,12 @@ const listItems = [
         <Box>
           <Typography
             variant="h1"
-            sx={{fontWeight: 'bold', fontSize: '38px', padding: '20px', color: 'white'}}
+            sx={{
+              fontWeight: "bold",
+              fontSize: "38px",
+              padding: "20px",
+              color: "white",
+            }}
           >
             <span className="text-accent">Plan</span>
             It
@@ -75,13 +85,15 @@ const listItems = [
           <List component="nav" sx={{ color: "white" }}>
             {listItems.map((item, index) => (
               <Link href={item.link}>
-              <ListItemButton
-                key={index}
-                sx={{ "&:hover": { backgroundColor: "#313131"} }}
-              >
-                <ListItemIcon sx={{marginLeft: '25px'}}>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text} />
-              </ListItemButton>
+                <ListItemButton
+                  key={index}
+                  sx={{ "&:hover": { backgroundColor: "#313131" } }}
+                >
+                  <ListItemIcon sx={{ marginLeft: "25px" }}>
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={item.text} />
+                </ListItemButton>
               </Link>
             ))}
           </List>
@@ -105,13 +117,19 @@ const listItems = [
             </ListItemButton>
             <ListItem sx={{ marginTop: "5px" }}>
               <ListItemAvatar>
-                <Avatar sx={{ color: 'white', bgcolor: "#526BA1", width: 40, height: 40 }}>
+                <Avatar
+                  sx={{
+                    color: "white",
+                    bgcolor: "#526BA1",
+                    width: 40,
+                    height: 40,
+                  }}
+                >
                   RH
                 </Avatar>
               </ListItemAvatar>
               <ListItemText
                 primary={
-                    
                   <Typography
                     component="span"
                     color="white"
@@ -133,4 +151,3 @@ const listItems = [
     </Box>
   );
 }
-

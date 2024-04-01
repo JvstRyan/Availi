@@ -4,18 +4,21 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { FaEdit } from "react-icons/fa";
 import { Users } from "@/app/api/users";
-import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import { useState } from "react";
-
-
 
 const UserEditModal = ({ name, email, roles, id }: Users) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [role, setRole] = useState(roles)
-
+  const [role, setRole] = useState(roles);
 
   return (
     <div>
@@ -30,19 +33,28 @@ const UserEditModal = ({ name, email, roles, id }: Users) => {
               label="Gebruikers naam"
               variant="outlined"
               className="w-full"
+              placeholder={name}
             />
-            <TextField className="w-full" color="secondary" label="Email" variant="outlined" />
+            <TextField
+              className="w-full"
+              color="secondary"
+              label="Email"
+              variant="outlined"
+              placeholder={email}
+            />
             <Select
               value={role}
               className="w-full"
               color="secondary"
-              onChange={(e) => setRole(e.target.value) }
+              onChange={(e) => setRole(e.target.value)}
             >
-              <MenuItem value={'volunteer'}>volunteer</MenuItem>
-              <MenuItem value={'admin'}>admin</MenuItem>
-              <MenuItem value={'guest'}>guest</MenuItem>
+              <MenuItem value={"volunteer"}>volunteer</MenuItem>
+              <MenuItem value={"admin"}>admin</MenuItem>
+              <MenuItem value={"guest"}>guest</MenuItem>
             </Select>
-            
+            <Button className="w-full h-12 mt-5" variant="outlined" color="secondary">
+              Gebruiker updaten
+            </Button>
           </form>
         </Box>
       </Modal>
