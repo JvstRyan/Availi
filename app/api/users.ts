@@ -5,7 +5,7 @@ export interface Users
     id?: string
     name: string
     email: string
-    roles: string[]
+    roles: string
 }
 
 export const getUsers = async () => 
