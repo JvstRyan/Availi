@@ -26,7 +26,7 @@ export default function SideBar() {
 const drawerWidth = 300;
 
 const listItems = [
-  { icon: <BsHouseDoor size={"25px"} color="white" />, text: "Overzicht"},
+  { icon: <BsHouseDoor size={"25px"} color="white" />, text: "Overzicht", link: '/dashboard'},
   {
     icon: <AiOutlineAudio size={"25px"} color="white" />,
     text: "Audio / Video", link: '/dashboard/survey'
@@ -74,14 +74,15 @@ const listItems = [
           </Typography>
           <List component="nav" sx={{ color: "white" }}>
             {listItems.map((item, index) => (
+              <Link href={item.link}>
               <ListItemButton
                 key={index}
                 sx={{ "&:hover": { backgroundColor: "#313131"} }}
-                component="a" href={item.link}
               >
                 <ListItemIcon sx={{marginLeft: '25px'}}>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItemButton>
+              </Link>
             ))}
           </List>
         </Box>
@@ -104,7 +105,7 @@ const listItems = [
             </ListItemButton>
             <ListItem sx={{ marginTop: "5px" }}>
               <ListItemAvatar>
-                <Avatar sx={{ bgcolor: "#526BA1", width: 40, height: 40 }}>
+                <Avatar sx={{ color: 'white', bgcolor: "#526BA1", width: 40, height: 40 }}>
                   RH
                 </Avatar>
               </ListItemAvatar>
