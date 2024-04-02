@@ -1,3 +1,4 @@
+
 import axios from "axios"
 
 export interface Users 
@@ -6,6 +7,13 @@ export interface Users
     name: string
     email: string
     roles: string
+}
+
+type UpdateUser = 
+{
+    name?: string;
+    email?: string;
+    roles?: string;
 }
 
 export const getUsers = async () => 
@@ -29,7 +37,26 @@ export const getUsers = async () =>
 
 }
 
-export const updateUsers = async ({_id, body}: {_id: string, body: {name: string, email: string, roles: string}}) => 
+
+export const registerUsers = async ({body}: {body: {name: string, email:string, password:string}}) => 
+{
+    try
+    {
+        const response = await axios.post(`https://localhost:7220/api/Auth/register`, body )
+        if(response)
+        return response.data
+        else
+        throw new Error("Post request failed")
+    }
+    catch(error)
+    {
+        console.error(error)
+    }
+}
+
+
+
+export const updateUsers = async ({_id, body}: {_id: string, body: UpdateUser}) => 
 {
     try 
     {

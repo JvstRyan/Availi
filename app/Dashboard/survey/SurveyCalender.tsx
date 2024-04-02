@@ -63,7 +63,7 @@ export default function SurveyCalender({ handleClose }: Props) {
           onClick={createDates}
           className="w-72 h-10"
           variant="outlined"
-          color="info"
+          color="secondary"
           
         >
           Enquete aamaken

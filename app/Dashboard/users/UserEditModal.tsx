@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
 
@@ -18,6 +18,16 @@ const UserEditModal = ({ name, email, roles, id }: Users) => {
   const [updatedName, setUpdatedName] = useState(name);
   const [updatedEmail, setUpdatedEmail] = useState(email);
 
+  const [isChanged, setIsChanged] = useState(false);
+
+  useEffect(() => {
+    if (updatedName !== name || updatedEmail !== email || updatedRole !== roles) {
+      setIsChanged(true)
+    } else {
+      setIsChanged(false);
+    }
+  }, [updatedName, updatedEmail, updatedRole]);
+
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -26,12 +36,33 @@ const UserEditModal = ({ name, email, roles, id }: Users) => {
       handleClose();
       queryClient.invalidateQueries({ queryKey: ["users"] });
       toast.success("Gebruiker is aangepast", {duration: 4000, position: "bottom-right" })
+      setUpdatedRole('')
+      setUpdatedName('')
+      setUpdatedEmail('')
     },
   });
 
   const handleUpdate = () => 
   {
-  mutation.mutate({ _id: id, body: {name: updatedName, email: updatedEmail, roles: updatedRole} });
+  const updatedData: Partial<Users> = {};
+
+  if (updatedName !== name) 
+  {
+    updatedData.name = updatedName;
+  }
+
+  if (updatedEmail != email) 
+  {
+    updatedData.email = updatedEmail;
+  }
+
+  if (updatedRole !== roles) 
+  {
+    updatedData.roles = updatedRole;
+  }
+
+
+  mutation.mutate({ _id: id, body: updatedData });
   }
 
 
@@ -44,7 +75,7 @@ const UserEditModal = ({ name, email, roles, id }: Users) => {
       </Button>
       <Modal open={open} onClose={handleClose}>
         <Box className="absolute top-1/4 left-2/4 -translate-x-10 -translate-y-10 w-1/4 p-10  bg-secondary">
-          <form onSubmit={(e) => e.preventDefault()} className="flex flex-col justift-center items-center gap-5 ">
+          <form onSubmit={(e) => {e.preventDefault(); handleUpdate();}} className="flex flex-col justift-center items-center gap-5 ">
             <TextField
               color="secondary"
               label="Gebruikers naam"
@@ -74,8 +105,9 @@ const UserEditModal = ({ name, email, roles, id }: Users) => {
             <Button
               className="w-full h-12 mt-5"
               variant="outlined"
-              color="info"
-              onClick={handleUpdate}
+              color="secondary"
+              type="submit"
+              disabled={!isChanged}
             >
               Gebruiker updaten
             </Button>
