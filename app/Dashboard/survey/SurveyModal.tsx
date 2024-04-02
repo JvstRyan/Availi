@@ -15,8 +15,7 @@ export default function BasicModal() {
       <Button
         onClick={handleOpen}
         variant="outlined"
-        size="large"
-        color="secondary"
+        color="info"
       >
         Nieuwe Enquete
       </Button>

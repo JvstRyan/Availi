@@ -1,5 +1,5 @@
 "use client";
-
+import toast, { Toaster } from 'react-hot-toast';
 import { postDates } from "@/app/api/survey";
 import { Alert, Box, Button } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -53,7 +53,7 @@ export default function SurveyCalender({ handleClose }: Props) {
           footer={footer}
           styles={{
             caption: { color: "white" },
-            table: { color: "white", fontSize: "15px" },
+            table: { color: "white", fontSize: "17px" },
           }}
           modifiersStyles={{
             selected: { backgroundColor: "#526BA1", color: "white" },
@@ -61,9 +61,10 @@ export default function SurveyCalender({ handleClose }: Props) {
         />
         <Button
           onClick={createDates}
-          className="w-5/6"
+          className="w-72 h-10"
           variant="outlined"
-          color="secondary"
+          color="info"
+          
         >
           Enquete aamaken
         </Button>

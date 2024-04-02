@@ -25,6 +25,7 @@ const config: Config = {
       "secondary": "#181818",
       "accent": "#526BA1",
       "white": "#ffffff",
+      "orange": "#EF973E"
     },
     borderRadius: {
       md: "10px",

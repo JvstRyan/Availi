@@ -13,6 +13,13 @@ export const theme = createTheme({
         secondary: 
         {
             main: "#526BA1"
+        },
+        info:
+        {
+            main: '#ffa726',
+            light: '#ffb74d',
+            dark: '#f57c00',
+            
         }
     }
 })

@@ -1,7 +1,7 @@
 import { Users } from "@/app/api/users";
-import { Button, Tooltip } from "@mui/material/";
-import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
+import { Tooltip } from "@mui/material/";
 import UserEditModal from "./UserEditModal";
+import UserDeleteModal from "./UserDeleteModal";
 
 
 const UserListItem = ({name, email, roles, id }: Users) => {
@@ -16,7 +16,7 @@ const UserListItem = ({name, email, roles, id }: Users) => {
               <li className=" min-w-36 max-w-36 truncate">{email}</li>
               </Tooltip>
               <li className="min-w-24 max-w-24 truncate">{roles}</li>
-            <Button><FaRegTrashAlt color="white" size={"20px"} /></Button>
+            <UserDeleteModal id={id} name={name}/>
           </ul>
     </>
   );

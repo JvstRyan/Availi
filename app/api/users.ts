@@ -2,7 +2,7 @@ import axios from "axios"
 
 export interface Users 
 {
-    id?: string
+    id: string
     name: string
     email: string
     roles: string
@@ -27,5 +27,37 @@ export const getUsers = async () =>
     console.error(error)
    }
 
+}
 
+export const updateUsers = async ({_id, body}: {_id: string, body: {name: string, email: string, roles: string}}) => 
+{
+    try 
+    {
+        const response = await axios.put(`https://localhost:7220/api/Auth/${_id}`, body)
+        if (response)
+        return response.data;
+        else 
+        throw new Error('Update request failed')
+    }
+    catch(error)
+    {
+    console.error(error)
+    }
+}
+
+
+export const deleteUsers = async ({_id}: {_id: string}) => 
+{
+    try 
+    {
+        const response = await axios.delete(`https://localhost:7220/api/Auth/${_id}`)
+        if (response)
+        return response.data;
+        else
+        throw new Error('Delete request failed')
+    }
+    catch(error)
+    {
+        console.error(error)
+    }
 }
