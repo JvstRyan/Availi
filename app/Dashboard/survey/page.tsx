@@ -1,10 +1,12 @@
 "use client"
 
 import { getAllDates } from "@/app/api/survey";
+import withAuth from "@/app/components/authentication/withAuth";
 import SurveyItem from "@/app/dashboard/survey/SurveyItem";
 import SurveyModal from "@/app/dashboard/survey/SurveyModal";
 import { Box, CircularProgress } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 
 const page = () => {
   const {data, isLoading} = useQuery({
@@ -13,6 +15,8 @@ const page = () => {
   });
 
   return (
+    <>
+    <Toaster />
     <Box
       className="flex justify-center items-center mt-10 flex-col gap-5 w-11/12"
       sx={{
@@ -36,7 +40,8 @@ const page = () => {
       </form>
       {isLoading && <CircularProgress color="secondary" />}
     </Box>
+    </>
   );
 };
 
-export default page;
+export default withAuth(page);

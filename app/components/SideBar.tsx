@@ -1,3 +1,4 @@
+import { Avatar, ListItem, ListItemAvatar, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -6,15 +7,16 @@ import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import { Avatar, ListItem, ListItemAvatar, Typography } from "@mui/material";
 import ListItemText from "@mui/material/ListItemText";
-import { BsHouseDoor } from "react-icons/bs";
-import { AiOutlineAudio } from "react-icons/ai";
-import { FaRegPaperPlane } from "react-icons/fa";
-import { PiUsers } from "react-icons/pi";
-import { IoIosCheckboxOutline } from "react-icons/io";
-import { RiLogoutBoxLine } from "react-icons/ri";
 import Link from "next/link";
+import { AiOutlineAudio } from "react-icons/ai";
+import { BsHouseDoor } from "react-icons/bs";
+import { FaRegPaperPlane } from "react-icons/fa";
+import { IoIosCheckboxOutline } from "react-icons/io";
+import { PiUsers } from "react-icons/pi";
+import LogoutButton from "./LogoutButton";
+import useUserStore from "@/userStore";
+import Profile from "./Profile";
 
 export default function SideBar() {
   const drawerWidth = 300;
@@ -109,42 +111,8 @@ export default function SideBar() {
               marginTop: "5px",
             }}
           >
-            <ListItemButton sx={{ "&:hover": { backgroundColor: "#313131" } }}>
-              <ListItemIcon>
-                <RiLogoutBoxLine size={"25px"} color="white" />
-              </ListItemIcon>
-              <ListItemText primary="Uitloggen" />
-            </ListItemButton>
-            <ListItem sx={{ marginTop: "5px" }}>
-              <ListItemAvatar>
-                <Avatar
-                  sx={{
-                    color: "white",
-                    bgcolor: "#526BA1",
-                    width: 40,
-                    height: 40,
-                  }}
-                >
-                  RH
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary={
-                  <Typography
-                    component="span"
-                    color="white"
-                    fontWeight={"bold"}
-                  >
-                    Ryan Horrmann
-                  </Typography>
-                }
-                secondary={
-                  <Typography component="span" variant="body2" color="#ABAAAA">
-                    ryanhorrmann@gmail.com
-                  </Typography>
-                }
-              ></ListItemText>
-            </ListItem>
+            <LogoutButton />
+           <Profile />
           </List>
         </Box>
       </Drawer>

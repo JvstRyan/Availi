@@ -1,11 +1,11 @@
 "use client"
 
 import { getUsers } from "@/app/api/users";
+import { CircularProgress } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
-import UserListItem from "./UserListItem";
-import { Button, CircularProgress } from "@mui/material";
 import UserCreationModal from "./UserCreationModal";
+import UserListItem from "./UserListItem";
+import withAuth from "@/app/components/authentication/withAuth";
 
 const page = () => {
 
@@ -34,4 +34,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default withAuth(page);

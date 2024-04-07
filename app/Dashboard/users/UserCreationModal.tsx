@@ -1,14 +1,12 @@
-import { registerUsers, updateUsers, Users } from "@/app/api/users";
-import { MenuItem, Select, TextField } from "@mui/material";
+import { registerUsers } from "@/app/api/auth";
+import { TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { error } from "console";
 import * as React from "react";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { FaEdit } from "react-icons/fa";
 
 const UserCreationModal = () => {
   const [open, setOpen] = React.useState(false);

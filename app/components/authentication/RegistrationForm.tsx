@@ -1,4 +1,4 @@
-import { registerUsers } from "@/app/api/users";
+import { registerUsers } from "@/app/api/auth";
 import { Button, InputAdornment, TextField } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
@@ -35,7 +35,7 @@ const RegistrationForm = ({ setIsRegistering }: registering) => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
     onError: (error) => {
-      toast.error(`${error}`, { duration: 5000, position: "bottom-right" });
+      toast.error(`Account already exists`, { duration: 5000, position: "top-center" });
     },
   });
 

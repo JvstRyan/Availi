@@ -7,7 +7,7 @@ import RegistrationForm from "./components/authentication/RegistrationForm";
 import { Toaster } from "react-hot-toast";
 
 export default function Login() {
-  const [isRegistering, setIsRegistering] = useState(true);
+  const [isRegistering, setIsRegistering] = useState(false);
 
   return (
     <>
