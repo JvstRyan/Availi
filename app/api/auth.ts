@@ -36,6 +36,7 @@ export const loginUsers = async ({body}: {body: {email: string, password: string
             userRole: data.userRole,
             userName: data.userName,
             userEmail: data.email,
+            userId: data.userId
         })
     }
 

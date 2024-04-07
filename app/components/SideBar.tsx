@@ -15,12 +15,11 @@ import { FaRegPaperPlane } from "react-icons/fa";
 import { IoIosCheckboxOutline } from "react-icons/io";
 import { PiUsers } from "react-icons/pi";
 import LogoutButton from "./LogoutButton";
-import useUserStore from "@/userStore";
-import Profile from "./Profile";
+import dynamic from "next/dynamic";
 
 export default function SideBar() {
+  const DynamicProfile = dynamic(() => import("./Profile"), { ssr: false });
   const drawerWidth = 300;
-
   const listItems = [
     {
       icon: <BsHouseDoor size={"25px"} color="white" />,
@@ -112,7 +111,7 @@ export default function SideBar() {
             }}
           >
             <LogoutButton />
-           <Profile />
+            <DynamicProfile />
           </List>
         </Box>
       </Drawer>

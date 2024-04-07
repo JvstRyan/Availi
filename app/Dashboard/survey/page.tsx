@@ -4,7 +4,7 @@ import { getAllDates } from "@/app/api/survey";
 import withAuth from "@/app/components/authentication/withAuth";
 import SurveyItem from "@/app/dashboard/survey/SurveyItem";
 import SurveyModal from "@/app/dashboard/survey/SurveyModal";
-import { Box, CircularProgress } from "@mui/material";
+import { Box, Button, CircularProgress } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 
@@ -37,6 +37,7 @@ const page = () => {
           <SurveyItem key={date.id} incomingDate={date.date} />
         ))}
          
+         <Button type="submit">Versturen</Button>
       </form>
       {isLoading && <CircularProgress color="secondary" />}
     </Box>

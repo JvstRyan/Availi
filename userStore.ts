@@ -1,10 +1,12 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
 type User = 
 {
     userRole: string
     userName: string
     userEmail: string
+    userId: string
 }
 
 type UserState =
@@ -13,10 +15,13 @@ type UserState =
     setUser: (user: User) => void
 }
 
-const useUserStore = create<UserState>()((set) => 
+const useUserStore = create(persist<UserState>((set) => 
 ({
 user: null,
 setUser: (user) => set({user})
-}))
+}), {
+    name: 'userStore',
+    getStorage: () => localStorage
+}));
 
 export default useUserStore;

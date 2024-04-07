@@ -32,7 +32,7 @@ const SurveyItem = ({incomingDate}: DateInt)  => {
         }}
       >
         <Typography fontWeight={"bold"} fontSize={"18px"}>
-          {`Aanwezig ${weekDay} ${day} ${month} ?`}
+          {`Beschikbaar ${weekDay} ${day} ${month} ?`}
         </Typography>
         <FormControlLabel
           control={<Checkbox color="secondary" checked={true} />}
