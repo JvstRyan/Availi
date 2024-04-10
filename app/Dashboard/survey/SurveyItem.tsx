@@ -5,19 +5,25 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
-interface DateInt {
-    incomingDate: Date
-}
+type SurveyItemProps = {
+  incomingDate: Date;
+  dateId: string;
+  onAnswerChange: (dateId: string, answer: boolean) => void;
+};
 
-const SurveyItem = ({incomingDate}: DateInt)  => {
+const SurveyItem = ({
+  incomingDate,
+  dateId,
+  onAnswerChange,
+}: SurveyItemProps) => {
+  const [answer, setAnswer] = useState(false);
 
-   const date = new Date(incomingDate);
-   const day = date.getDate();
-   const weekDay = date.toLocaleString('default', {weekday: 'long'})
-   const month = date.toLocaleString('default', {month: 'long'});
-
+  const date = new Date(incomingDate);
+  const day = date.getDate();
+  const weekDay = date.toLocaleString("default", { weekday: "long" });
+  const month = date.toLocaleString("default", { month: "long" });
 
   return (
     <>
@@ -35,11 +41,20 @@ const SurveyItem = ({incomingDate}: DateInt)  => {
           {`Beschikbaar ${weekDay} ${day} ${month} ?`}
         </Typography>
         <FormControlLabel
-          control={<Checkbox color="secondary" checked={true} />}
+          control={
+            <Checkbox
+              color="secondary"
+              checked={answer}
+              onChange={(e) => {
+                const newAnswer = e.target.checked;
+                setAnswer(newAnswer);
+                onAnswerChange(dateId, newAnswer);
+              }}
+            />
+          }
           label="Wel"
           sx={{ marginTop: "10px" }}
         />
-        <FormControlLabel control={<Checkbox checked={false} />} label="Niet" />
       </Box>
     </>
   );

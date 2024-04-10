@@ -58,7 +58,7 @@ const UserEditModal = ({ name, email, roles, id }: Users) => {
 
   if (updatedRole !== roles) 
   {
-    updatedData.roles = updatedRole;
+     updatedData.roles = updatedRole
   }
 
 

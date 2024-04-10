@@ -13,7 +13,7 @@ type UpdateUser =
 {
     name?: string;
     email?: string;
-    roles?: string;
+    roles?: string
 }
 
 export const getUsers = async () => 
