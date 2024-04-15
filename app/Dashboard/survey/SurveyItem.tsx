@@ -52,7 +52,7 @@ const SurveyItem = ({
               }}
             />
           }
-          label="Wel"
+          label="Ja"
           sx={{ marginTop: "10px" }}
         />
       </Box>

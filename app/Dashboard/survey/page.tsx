@@ -1,70 +1,108 @@
-"use client"
+"use client";
 
+import { createResponse } from "@/app/api/response";
 import { getAllDates } from "@/app/api/survey";
 import withAuth from "@/app/components/authentication/withAuth";
 import SurveyItem from "@/app/dashboard/survey/SurveyItem";
 import SurveyModal from "@/app/dashboard/survey/SurveyModal";
-import { Box, Button, CircularProgress } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-import { Toaster } from "react-hot-toast";
+import useUserStore from "@/userStore";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { LiaCheckCircleSolid } from "react-icons/lia";
 
 const page = () => {
-  const {data, isLoading} = useQuery({
+  const user = useUserStore((state) => state.user);
+  const setUser = useUserStore((state) => state.setUser);
+  const { data, isLoading } = useQuery({
     queryKey: ["dates"],
     queryFn: getAllDates,
   });
 
- const [answers, setAnswers] = useState({})
 
-  const handleAnswerChange = (dateId: string, answer: boolean) => 
-  {
+  const [answers, setAnswers] = useState<Record<string, boolean>>({});
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const handleAnswerChange = (dateId: string, answer: boolean) => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
       [dateId]: answer,
     }));
-  }
+  };
 
-  const handleSubmit = (event: React.FormEvent) => 
-  {
-    event.preventDefault()
-    const response = 
-    {
-      userId: 'user-id',
-      dateAnswers: Object.entries(answers).map(([dateId, answer]) => ({dateId, answer})),
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: createResponse,
+    onSuccess: () => {
+      toast.success("Antwoorden zijn opgeslagen", {
+        duration: 4000,
+        position: "bottom-right",
+      });
+      queryClient.invalidateQueries({ queryKey: ["responses"] });
+    },
+    onError: (error) => {
+      toast.error(`${error}`, { duration: 5000, position: "bottom-right" });
+    },
+  });
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const response = {
+      userId: user?.userId,
+      dateAnswers: Object.entries(answers).map(([dateId, answer]) => ({
+        dateId,
+        answer,
+      })),
     };
-
-    console.log(response)
-  }
-  
-
+    mutation.mutate({ body: response });
+    if (user) {
+      const updatedUser = { ...user, answered: true };
+      setUser(updatedUser);
+    }
+  };
   return (
     <>
-    <Toaster />
-    <Box
-      className="flex justify-center items-center mt-10 flex-col gap-5 w-11/12"
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: "2rem",
-        flexDirection: "column",
-        gap: "10px",
-        width: "80%",
-      }}
-    >
-      <Box className="flex justify-end items-end self-end">
-        <SurveyModal />
+      <Toaster />
+      <Box className="flex flex-col w-11/12 h-full mt-10 ">
+        <Box className="flex justify-end items-end self-end ">
+          <SurveyModal />
+        </Box>
+        {isMounted && !user?.answered && (
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col w-full text-white mt-5 gap-3"
+          >
+            {data?.map((date) => (
+              <SurveyItem
+                key={date.id}
+                dateId={date.id}
+                incomingDate={date.date}
+                onAnswerChange={handleAnswerChange}
+              />
+            ))}
+            <Button
+              disabled={user?.answered}
+              color="secondary"
+              className="p-3 mt-3"
+              variant="outlined"
+              type="submit"
+            >
+              Versturen
+            </Button>
+          </form>
+        )}
+        {isLoading && <CircularProgress color="secondary" />}
       </Box>
-      <form onSubmit={handleSubmit} className="flex flex-col w-full h-10 text-white mt-5 gap-3">
-        {data?.map((date) => (
-          <SurveyItem key={date.id} dateId={date.id} incomingDate={date.date} onAnswerChange={handleAnswerChange} />
-        ))}
-         
-         <Button type="submit">Versturen</Button>
-      </form>
-      {isLoading && <CircularProgress color="secondary" />}
-    </Box>
+     { isMounted && user?.answered && <Box className="flex flex-col justify-center items-center gap-1 -mt-10">
+        <LiaCheckCircleSolid size={160} color="#526BA1" />
+        <Typography fontSize={'20px'}>Enquête is ingevuld, bedankt!</Typography>
+      </Box> }
     </>
   );
 };

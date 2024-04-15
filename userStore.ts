@@ -7,6 +7,7 @@ type User =
     userName: string
     userEmail: string
     userId: string
+    answered: boolean
 }
 
 type UserState =

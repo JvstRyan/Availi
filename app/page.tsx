@@ -14,7 +14,7 @@ export default function Login() {
      <Toaster />
       <Box
         component="section"
-        className="flex flex-col justify-center items-center mt-16"
+        className="flex flex-col items-center justify-center min-h-screen"
       >
         <Typography
           variant="h1"

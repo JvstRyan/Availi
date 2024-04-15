@@ -1,11 +1,12 @@
 "use client";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import { postDates } from "@/app/api/survey";
 import { Alert, Box, Button } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
+import useUserStore from "@/userStore";
 
 interface Props {
   handleClose: () => void;
@@ -13,6 +14,8 @@ interface Props {
 
 export default function SurveyCalender({ handleClose }: Props) {
   const [days, setDays] = useState<Date[] | undefined>([]);
+  const user = useUserStore((state) => state.user);
+  const setUser = useUserStore((state) => state.setUser);
 
   const queryClient = useQueryClient();
 
@@ -20,6 +23,14 @@ export default function SurveyCalender({ handleClose }: Props) {
     mutationFn: postDates,
     onSuccess: () => {
       handleClose();
+      if (user) {
+        const updatedUser = { ...user, answered: false };
+        setUser(updatedUser);
+      }
+      toast.success("Datums zijn aangemaakt", {
+        duration: 4000,
+        position: "bottom-right",
+      });
       queryClient.invalidateQueries({ queryKey: ["dates"] });
     },
   });
@@ -64,9 +75,8 @@ export default function SurveyCalender({ handleClose }: Props) {
           className="w-72 h-10"
           variant="outlined"
           color="secondary"
-          
         >
-          Enquete aamaken
+          Enquête aamaken
         </Button>
       </Box>
     </>
