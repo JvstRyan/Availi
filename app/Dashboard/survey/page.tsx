@@ -10,7 +10,7 @@ import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { LiaCheckCircleSolid } from "react-icons/lia";
+import { RiMailSendLine } from "react-icons/ri";
 
 const page = () => {
   const user = useUserStore((state) => state.user);
@@ -99,8 +99,7 @@ const page = () => {
         )}
         {isLoading && <CircularProgress color="secondary" />}
       </Box>
-     { isMounted && user?.answered && <Box className="flex flex-col justify-center items-center gap-1 -mt-10">
-        <LiaCheckCircleSolid size={160} color="#526BA1" />
+     { isMounted && user?.answered && <Box className="flex justify-center mt-20 items-center">
         <Typography fontSize={'20px'}>Enquête is ingevuld, bedankt!</Typography>
       </Box> }
     </>

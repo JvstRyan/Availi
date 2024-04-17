@@ -44,7 +44,7 @@ export default function SideBar() {
     {
       icon: <IoIosCheckboxOutline size={"25px"} color="white" />,
       text: "Aanwezigen",
-      link: "/dashboard/survey",
+      link: "/dashboard/response",
     },
   ];
   return (
