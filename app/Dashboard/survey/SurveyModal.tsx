@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Modal, Box, Typography } from "@mui/material";
+import { Button, Modal, Box} from "@mui/material";
 import React from "react";
 import SurveyCalender from "./SurveyCalender";
 

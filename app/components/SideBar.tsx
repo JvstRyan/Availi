@@ -34,7 +34,7 @@ export default function SideBar() {
     {
       icon: <FaRegPaperPlane size={"22px"} color="white" />,
       text: "Nieuw schema",
-      link: "/dashboard/survey",
+      link: "/dashboard/schedule",
     },
     {
       icon: <PiUsers size={"24px"} color="white" />,
