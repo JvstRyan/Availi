@@ -41,20 +41,20 @@ const UserDeleteModal = ({id, name}: Props) => {
     <div>
       <Toaster />
       <Button onClick={handleOpen}>
-        <FaRegTrashAlt color="white" size={"20px"} />
+        <FaRegTrashAlt color="black" size={"20px"} />
       </Button>
       <Modal
         open={open}
         onClose={handleClose}
         
       >
-        <Box className="absolute top-1/4 left-2/4 -translate-x-10 -translate-y-10 w-1/4 p-10  bg-secondary">
+        <Box className="absolute top-1/4 left-2/4 -translate-x-10 -translate-y-10 w-1/4 p-10  bg-white">
             <Box component={"article"} className="flex flex-col items-center justify-center gap-2">
-            <CgDanger color="white" size={"45px"} />
-            <Typography color={"white"} fontWeight={"bold"} fontSize={"20px"}>Verwijder Gebruiker</Typography>
-            <Typography color={"white"} align="center" fontSize={"15px"}>Je gaat de gebruiker <b>{name}</b> verwijderen. Weet je het zeker?</Typography>
+            <CgDanger size={"45px"} />
+            <Typography  fontWeight={"bold"} fontSize={"20px"}>Verwijder Gebruiker</Typography>
+            <Typography align="center" fontSize={"15px"}>Je gaat de gebruiker <b>{name}</b> verwijderen. Weet je het zeker?</Typography>
             <Box component={'div'} className="flex justify-center items-center gap-5 mt-5">
-            <Button onClick={handleClose} color="secondary" variant="outlined">Terug</Button>
+            <Button onClick={handleClose} color="primary" variant="outlined">Terug</Button>
             <Button onClick={deleteUser} color="warning" variant="outlined">Verwijderen</Button>
             </Box>
             </Box>

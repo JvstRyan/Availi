@@ -20,13 +20,7 @@ const config: Config = {
       lg: "976px",
       xl: "1440px",
     },
-    colors: {
-      "primary": "#000000",
-      "secondary": "#181818",
-      "accent": "#526BA1",
-      "white": "#ffffff",
-      "orange": "#EF973E"
-    },
+     
     borderRadius: {
       md: "10px",
     },

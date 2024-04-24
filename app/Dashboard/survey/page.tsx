@@ -10,7 +10,7 @@ import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { RiMailSendLine } from "react-icons/ri";
+
 
 const page = () => {
   const user = useUserStore((state) => state.user);
@@ -88,7 +88,7 @@ const page = () => {
             ))}
             <Button
               disabled={user?.answered}
-              color="secondary"
+              color="primary"
               className="p-3 mt-3"
               variant="outlined"
               type="submit"

@@ -24,7 +24,7 @@ const Profile = () => {
           <Avatar
             sx={{
               color: "white",
-              bgcolor: "#526BA1",
+              bgcolor: "black",
               width: 40,
               height: 40,
             }}
@@ -33,11 +33,11 @@ const Profile = () => {
           </Avatar>
         </ListItemAvatar>
         <Box className="flex flex-col -gap-10">
-            <Typography component="span" variant="body1" noWrap color="white" fontWeight={"bold"}>
+            <Typography component="span" variant="body1" noWrap color="black" fontWeight={"semi-bold"}>
               {user?.userName}
             </Typography>
     
-            <Typography component="span" noWrap variant="body2" color="#ABAAAA">
+            <Typography component="span" noWrap variant="body2" color="black">
               {user?.userEmail}
             </Typography>
         </Box>

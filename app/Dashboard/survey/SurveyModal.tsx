@@ -15,7 +15,7 @@ export default function BasicModal() {
       <Button
         onClick={handleOpen}
         variant="outlined"
-        color="secondary"
+        color="primary"
       >
         Nieuwe Enquête
       </Button>
@@ -23,11 +23,11 @@ export default function BasicModal() {
         <Box
           sx={{
             position: "absolute",
-            top: "40%",
+            top: "50%",
             left: "55%",
             transform: "translate(-50%, -50%)",
+            bgcolor: 'white',
             width: 500,
-            bgcolor: "#181818",
             padding: 4,
           }}
         >

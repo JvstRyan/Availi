@@ -1,4 +1,4 @@
-import { Avatar, ListItem, ListItemAvatar, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -8,6 +8,7 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { AiOutlineAudio } from "react-icons/ai";
 import { BsHouseDoor } from "react-icons/bs";
@@ -15,40 +16,40 @@ import { FaRegPaperPlane } from "react-icons/fa";
 import { IoIosCheckboxOutline } from "react-icons/io";
 import { PiUsers } from "react-icons/pi";
 import LogoutButton from "./LogoutButton";
-import dynamic from "next/dynamic";
+import Image from "next/image";
 
 export default function SideBar() {
   const DynamicProfile = dynamic(() => import("./Profile"), { ssr: false });
   const drawerWidth = 300;
   const listItems = [
     {
-      icon: <BsHouseDoor size={"25px"} color="white" />,
+      icon: <BsHouseDoor size={"25px"} color="black" />,
       text: "Overzicht",
       link: "/dashboard",
     },
     {
-      icon: <AiOutlineAudio size={"25px"} color="white" />,
+      icon: <AiOutlineAudio size={"25px"} color="black" />,
       text: "Audio / Video",
       link: "/dashboard/survey",
     },
     {
-      icon: <FaRegPaperPlane size={"22px"} color="white" />,
+      icon: <FaRegPaperPlane size={"22px"} color="black" />,
       text: "Nieuw schema",
       link: "/dashboard/schedule",
     },
     {
-      icon: <PiUsers size={"24px"} color="white" />,
+      icon: <PiUsers size={"24px"} color="black" />,
       text: "Gebruikers",
       link: "/dashboard/users",
     },
     {
-      icon: <IoIosCheckboxOutline size={"25px"} color="white" />,
+      icon: <IoIosCheckboxOutline size={"25px"} color="black" />,
       text: "Aanwezigen",
       link: "/dashboard/response",
     },
   ];
   return (
-    <Box sx={{ display: "flex" }}>
+    <Paper sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -61,7 +62,6 @@ export default function SideBar() {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
-            backgroundColor: "#181818",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
@@ -71,24 +71,15 @@ export default function SideBar() {
         anchor="left"
       >
         <Box>
-          <Typography
-            variant="h1"
-            sx={{
-              fontWeight: "bold",
-              fontSize: "38px",
-              padding: "20px",
-              color: "white",
-            }}
-          >
-            <span className="text-accent">Plan</span>
-            It
-          </Typography>
-          <List component="nav" sx={{ color: "white" }}>
+          <article className="flex justify-start items-center pl-7  mt-8 mb-10 ">
+          <Image draggable={false} src="/logo.svg" alt={"logo"} width={200} height={100} />
+          </article>
+          <List component="nav" sx={{ color: "black" }}>
             {listItems.map((item, index) => (
               <Link href={item.link}>
                 <ListItemButton
                   key={index}
-                  sx={{ "&:hover": { backgroundColor: "#313131" } }}
+                  sx={{ "&:hover": { backgroundColor: "#ffff0" } }}
                 >
                   <ListItemIcon sx={{ marginLeft: "25px" }}>
                     {item.icon}
@@ -115,6 +106,6 @@ export default function SideBar() {
           </List>
         </Box>
       </Drawer>
-    </Box>
+    </Paper>
   );
 }

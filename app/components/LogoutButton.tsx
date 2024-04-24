@@ -20,12 +20,14 @@ const LogoutButton = () => {
     <>
       <ListItemButton
         onClick={handleLogout}
-        sx={{ "&:hover": { backgroundColor: "#313131" } }}
+        sx={{ "&:hover": { backgroundColor: "#ffff0"}, color: 'black' }}
       >
         <ListItemIcon>
-          <RiLogoutBoxLine size={"25px"} color="white" />
+          <RiLogoutBoxLine size={"25px"} color="black" />
         </ListItemIcon>
-        <ListItemText primary="Uitloggen" />
+        <ListItemText>
+          Uitloggen
+        </ListItemText>
       </ListItemButton>
     </>
   );

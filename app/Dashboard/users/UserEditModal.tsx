@@ -8,6 +8,7 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
 
 const UserEditModal = ({ name, email, roles, id }: Users) => {
   const [open, setOpen] = React.useState(false);
@@ -71,13 +72,14 @@ const UserEditModal = ({ name, email, roles, id }: Users) => {
     <div>
      <Toaster />
       <Button onClick={handleOpen}>
-        <FaEdit color="white" size={"22px"} />
+        <FaEdit color="black" size={"22px"} />
       </Button>
       <Modal open={open} onClose={handleClose}>
-        <Box className="absolute top-1/4 left-2/4 -translate-x-10 -translate-y-10 w-1/4 p-10  bg-secondary">
+        <Box className="absolute top-1/4 left-2/4 -translate-x-10 -translate-y-10 w-1/4 p-10  bg-white">
           <form onSubmit={(e) => {e.preventDefault(); handleUpdate();}} className="flex flex-col justift-center items-center gap-5 ">
+          <RxCross2 className="self-end cursor-pointer" onClick={handleClose} size={'28px'}/>
             <TextField
-              color="secondary"
+              color="primary"
               label="Gebruikers naam"
               variant="outlined"
               className="w-full"
@@ -86,7 +88,7 @@ const UserEditModal = ({ name, email, roles, id }: Users) => {
             />
             <TextField
               className="w-full"
-              color="secondary"
+              color="primary"
               label="Email"
               variant="outlined"
               onChange={(e) => setUpdatedEmail(e.target.value)}
@@ -95,7 +97,7 @@ const UserEditModal = ({ name, email, roles, id }: Users) => {
             <Select
               value={updatedRole}
               className="w-full"
-              color="secondary"
+              color="primary"
               onChange={(e) => setUpdatedRole(e.target.value)}
             >
               <MenuItem value={"volunteer"}>volunteer</MenuItem>
@@ -105,7 +107,7 @@ const UserEditModal = ({ name, email, roles, id }: Users) => {
             <Button
               className="w-full h-12 mt-5"
               variant="outlined"
-              color="secondary"
+              color="primary"
               type="submit"
               disabled={!isChanged}
             >

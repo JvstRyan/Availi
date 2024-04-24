@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import useUserStore from "@/userStore";
+import { RxCross2 } from "react-icons/rx";
 
 interface Props {
   handleClose: () => void;
@@ -56,6 +57,7 @@ export default function SurveyCalender({ handleClose }: Props) {
   return (
     <>
       <Box className="flex flex-col justify-center items-center gap-5">
+        <RxCross2 className="self-end cursor-pointer" onClick={handleClose} size={'28px'}/>
         <DayPicker
           mode="multiple"
           min={1}
@@ -63,8 +65,8 @@ export default function SurveyCalender({ handleClose }: Props) {
           onSelect={setDays}
           footer={footer}
           styles={{
-            caption: { color: "white" },
-            table: { color: "white", fontSize: "17px" },
+            caption: { color: "black" },
+            table: { color: "black", fontSize: "17px" },
           }}
           modifiersStyles={{
             selected: { backgroundColor: "#526BA1", color: "white" },
@@ -72,9 +74,9 @@ export default function SurveyCalender({ handleClose }: Props) {
         />
         <Button
           onClick={createDates}
-          className="w-72 h-10"
+          className="w-72 h-10 mb-10"
           variant="outlined"
-          color="secondary"
+          color="primary"
         >
           Enquête aamaken
         </Button>

@@ -27,9 +27,8 @@ const SurveyItem = ({
 
   return (
     <>
-      <Box
+      <Paper
         sx={{
-          backgroundColor: "#181818",
           display: "flex",
           flexDirection: "column",
           padding: "30px",
@@ -43,7 +42,7 @@ const SurveyItem = ({
         <FormControlLabel
           control={
             <Checkbox
-              color="secondary"
+              color="info"
               checked={answer}
               onChange={(e) => {
                 const newAnswer = e.target.checked;
@@ -55,7 +54,7 @@ const SurveyItem = ({
           label="Ja"
           sx={{ marginTop: "10px" }}
         />
-      </Box>
+      </Paper>
     </>
   );
 };
