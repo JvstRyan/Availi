@@ -1,16 +1,17 @@
 "use client";
 
+
 import {
-  Button,
   Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TableRow,
+  TableRow
 } from "@mui/material";
-import axios from "axios";
+
+import { handleSchedule } from "@/app/api/response";
 import { useState } from "react";
 import { ReceivedResponse } from "../response/page";
 import ScheduleModal from "./ScheduleModal";
@@ -18,16 +19,13 @@ import ScheduleModal from "./ScheduleModal";
 const page = () => {
   const [receivedData, setReceivedData] = useState<ReceivedResponse[]>();
 
-  const handleSchedule = async () => {
-    try {
-      const response = await axios.get(`https://localhost:7220/api/Response`);
-      if (response && response.data) setReceivedData(response.data);
-      else throw new Error("Fetching of responses failed");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+ const scheduleHandler = async () => 
+{
+  const data = await handleSchedule()
+  setReceivedData(data)
+}
+  
+  
   function createData(
     date: string,
     audio: string,
@@ -59,11 +57,14 @@ const page = () => {
       );
     });
 
+
   return (
+    
     <>
+   
       <section className="mt-10 w-11/12 flex flex-col gap-5 mb-10">
         <article className="flex justify-end items-end self-end">
-          <ScheduleModal handleSchedule={handleSchedule} userData={receivedData} />
+        <ScheduleModal handleSchedule={scheduleHandler} />
         </article>
         <TableContainer className="mt-10" component={Paper}>
           <Table className="bg-primary" aria-label="simple table">

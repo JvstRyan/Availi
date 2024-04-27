@@ -9,6 +9,13 @@ export interface Response
     }[];
 }
 
+export interface ResponseUser 
+{
+    userId: string
+    userName: string
+}
+
+
 export const getResponses = async () => 
 {
     try 
@@ -41,4 +48,34 @@ export const createResponse = async ({body}: {body: Response}) =>
         console.error(error)
     }
 }
+
+export const getResponseUsers = async () => 
+{
+    try 
+    {
+        const response = await axios.get<ResponseUser[]>(`https://localhost:7220/api/Response/users`)
+        if(response && response.data) 
+            return response.data
+        else
+            throw new Error('Fetching response users failed')
+    }
+    catch(error)
+    {
+        console.error(error)
+        throw error
+    }
+}
+
+export const handleSchedule = async () => {
+    try {
+      const res = await fetch(`https://localhost:7220/api/Response`, {cache: 'force-cache'});
+      if (!res.ok) {
+        throw new Error('Failed to fetch data')
+      }
+      return res.json();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 

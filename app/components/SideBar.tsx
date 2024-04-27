@@ -10,7 +10,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { AiOutlineAudio } from "react-icons/ai";
+import { LuListTodo } from "react-icons/lu";
+import { GrSchedules } from "react-icons/gr";
 import { BsHouseDoor } from "react-icons/bs";
 import { FaRegPaperPlane } from "react-icons/fa";
 import { IoIosCheckboxOutline } from "react-icons/io";
@@ -28,13 +29,13 @@ export default function SideBar() {
       link: "/dashboard",
     },
     {
-      icon: <AiOutlineAudio size={"25px"} color="black" />,
-      text: "Audio / Video",
+      icon: <LuListTodo size={"25px"} color="black" />,
+      text: "Enquête",
       link: "/dashboard/survey",
     },
     {
-      icon: <FaRegPaperPlane size={"22px"} color="black" />,
-      text: "Nieuw schema",
+      icon: <GrSchedules size={"22px"} color="black" />,
+      text: "Schema",
       link: "/dashboard/schedule",
     },
     {
@@ -71,8 +72,8 @@ export default function SideBar() {
         anchor="left"
       >
         <Box>
-          <article className="flex justify-start items-center pl-7  mt-8 mb-10 ">
-          <Image draggable={false} src="/logo.svg" alt={"logo"} width={200} height={100} />
+          <article className="flex justify-start items-center pl-10  mt-8 mb-10 ">
+          {/* <Image draggable={false} src="/planit.svg" alt={"logo"} width={120} height={100} /> */}
           </article>
           <List component="nav" sx={{ color: "black" }}>
             {listItems.map((item, index) => (

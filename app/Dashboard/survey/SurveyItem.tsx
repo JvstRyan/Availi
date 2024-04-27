@@ -28,6 +28,7 @@ const SurveyItem = ({
   return (
     <>
       <Paper
+        elevation={6}
         sx={{
           display: "flex",
           flexDirection: "column",
