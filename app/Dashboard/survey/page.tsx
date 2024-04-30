@@ -2,7 +2,7 @@
 
 import { createResponse } from "@/app/api/response";
 import { getAllDates } from "@/app/api/survey";
-import withAuth from "@/app/components/authentication/withAuth";
+import withAuth from "@/app/components/auth/withAuth";
 import SurveyItem from "@/app/dashboard/survey/SurveyItem";
 import SurveyModal from "@/app/dashboard/survey/SurveyModal";
 import useUserStore from "@/userStore";
@@ -11,7 +11,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-
 const page = () => {
   const user = useUserStore((state) => state.user);
   const setUser = useUserStore((state) => state.setUser);
@@ -19,7 +18,6 @@ const page = () => {
     queryKey: ["dates"],
     queryFn: getAllDates,
   });
-
 
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
   const [isMounted, setIsMounted] = useState(false);
@@ -99,9 +97,13 @@ const page = () => {
         )}
         {isLoading && <CircularProgress color="secondary" />}
       </Box>
-     { isMounted && user?.answered && <Box className="flex justify-center mt-20 items-center">
-        <Typography fontSize={'20px'}>Enquête is ingevuld, bedankt!</Typography>
-      </Box> }
+      {isMounted && user?.answered && (
+        <Box className="flex justify-center mt-20 items-center">
+          <Typography fontSize={"20px"}>
+            Enquête is ingevuld, bedankt!
+          </Typography>
+        </Box>
+      )}
     </>
   );
 };

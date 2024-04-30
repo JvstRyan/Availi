@@ -2,8 +2,8 @@
 
 import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
-import LoginForm from "./components/authentication/LoginForm";
-import RegistrationForm from "./components/authentication/RegistrationForm";
+import LoginForm from "./components/auth/LoginForm";
+import RegistrationForm from "./components/auth/RegistrationForm";
 import { Toaster } from "react-hot-toast";
 
 export default function Login() {
@@ -11,7 +11,7 @@ export default function Login() {
 
   return (
     <>
-     <Toaster />
+      <Toaster />
       <Box
         component="section"
         className="flex flex-col items-center justify-center min-h-screen"
@@ -49,7 +49,11 @@ export default function Login() {
             Inloggen
           </Button>
         </Box>
-        {isRegistering ? <RegistrationForm setIsRegistering={setIsRegistering} /> : <LoginForm />}
+        {isRegistering ? (
+          <RegistrationForm setIsRegistering={setIsRegistering} />
+        ) : (
+          <LoginForm />
+        )}
         <Typography
           component={"p"}
           color={"white"}
@@ -58,7 +62,6 @@ export default function Login() {
         >
           {isRegistering ? "Heb je al een account?" : "Nog geen account?"}
           <span
-          
             onClick={
               isRegistering
                 ? () => setIsRegistering(false)
@@ -66,7 +69,7 @@ export default function Login() {
             }
             className=" underline text-accent cursor-pointer ml-1"
           >
-            {isRegistering ? 'Inloggen' : 'Registreren'}
+            {isRegistering ? "Inloggen" : "Registreren"}
           </span>
         </Typography>
       </Box>
