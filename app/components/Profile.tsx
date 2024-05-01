@@ -1,11 +1,10 @@
 "use client"
 
 import useUserStore from "@/userStore";
-import { ListItem, ListItemAvatar, Avatar, ListItemText, Typography, Box } from "@mui/material";
+import { Avatar, Box, ListItem, ListItemAvatar, Typography } from "@mui/material";
 import React from "react";
 
-
-const Profile = () => {
+const Profile = React.memo(() => {
 
     const user = useUserStore((state) => state.user);
 
@@ -15,19 +14,12 @@ const Profile = () => {
         initials = splitName.length > 1  ? `${splitName[0][0]}${splitName[splitName.length - 1][0]}` : `${splitName[0][0]}`;
     }
      
-  
-    
   return (
     <>
       <ListItem sx={{ marginTop: "5px" }}>
         <ListItemAvatar>
           <Avatar
-            sx={{
-              color: "white",
-              bgcolor: "black",
-              width: 40,
-              height: 40,
-            }}
+            className="bg-gradient-primary w-[40px] h-[40px] text-white"
           >
             {initials}
           </Avatar>
@@ -44,6 +36,6 @@ const Profile = () => {
       </ListItem>
     </>
   );
-};
+});
 
 export default Profile;

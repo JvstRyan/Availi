@@ -105,9 +105,9 @@ const UserEditModal = ({ name, email, roles, id }: Users) => {
               <MenuItem value={"guest"}>guest</MenuItem>
             </Select>
             <Button
-              className="w-full h-12 mt-5"
+              className="bg-gradient-primary w-full h-12 mt-3 mb-3 p-2 font-bold"
+              color="secondary"
               variant="outlined"
-              color="primary"
               type="submit"
               disabled={!isChanged}
             >

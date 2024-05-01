@@ -86,8 +86,8 @@ const page = () => {
             ))}
             <Button
               disabled={user?.answered}
-              color="primary"
-              className="p-3 mt-3"
+              className="bg-gradient-primary p-2.5 font-bold mt-5 mb-5"
+              color="secondary"
               variant="outlined"
               type="submit"
             >

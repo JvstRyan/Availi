@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
-.MuiTableCell-head, .MuiTableCell-body {
-  color: 'white'
+.gradient-text {
+  background: linear-gradient(to right, #38B6FF, #5271FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

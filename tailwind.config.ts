@@ -8,11 +8,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
+      backgroundImage: (theme: any) => ({
+        "gradient-primary": `linear-gradient(to right, ${theme(
+          "colors.firstblue"
+        )}, ${theme("colors.secondblue")})`,
+      }),
+    },
+    colors: {
+      firstblue: "#38B6FF",
+      secondblue: "#5271FF",
+      white: '#fff',
     },
     screens: {
       sm: "480px",
@@ -20,7 +25,7 @@ const config: Config = {
       lg: "976px",
       xl: "1440px",
     },
-     
+
     borderRadius: {
       md: "10px",
     },

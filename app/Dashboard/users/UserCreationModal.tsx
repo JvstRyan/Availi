@@ -50,7 +50,12 @@ const UserCreationModal = () => {
   return (
     <div>
       <Toaster />
-      <Button onClick={handleOpen} variant="outlined" color="primary">
+      <Button
+        onClick={handleOpen}
+        variant="outlined"
+        className="bg-gradient-primary p-2 w-48 font-bold"
+        color="secondary"
+      >
         Nieuwe Gebruiker
       </Button>
       <Modal open={open} onClose={handleClose}>
@@ -94,9 +99,9 @@ const UserCreationModal = () => {
               onChange={(e) => setRegisterPassword(e.target.value)}
             />
             <Button
-              className="w-full h-12 mt-5"
+              className="bg-gradient-primary w-full h-12 mt-3 mb-3 p-2 font-bold"
+              color="secondary"
               variant="outlined"
-              color="primary"
               type="submit"
             >
               Gebruiker aanmaken

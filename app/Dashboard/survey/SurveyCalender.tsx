@@ -69,14 +69,14 @@ export default function SurveyCalender({ handleClose }: Props) {
             table: { color: "black", fontSize: "17px" },
           }}
           modifiersStyles={{
-            selected: { backgroundColor: "#526BA1", color: "white" },
+            selected: { backgroundColor: "#319DDB", color: "white" },
           }}
         />
         <Button
           onClick={createDates}
-          className="w-72 h-10 mb-10"
+          className="bg-gradient-primary p-2 w-72 h-10 mb-10 font-bold"
+          color="secondary"
           variant="outlined"
-          color="primary"
         >
           Enquête aamaken
         </Button>

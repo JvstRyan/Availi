@@ -1,4 +1,3 @@
-
 import { getResponseUsers } from "@/app/api/response";
 import { Box, Button, Divider, Modal, Paper, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
@@ -9,7 +8,7 @@ type Props = {
   handleSchedule: () => void;
 };
 
-const ScheduleModal = ({handleSchedule}: Props) => {
+const ScheduleModal = ({ handleSchedule }: Props) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -19,10 +18,13 @@ const ScheduleModal = ({handleSchedule}: Props) => {
     queryKey: ["response-user"],
   });
 
-
   return (
     <>
-      <Button onClick={handleOpen} variant="outlined" color="primary">
+      <Button
+        onClick={handleOpen}
+        className="bg-gradient-primary p-2 w-48 font-bold"
+        color="secondary"
+      >
         Nieuwe Schema
       </Button>
       <Modal open={open} onClose={handleClose}>
@@ -36,12 +38,22 @@ const ScheduleModal = ({handleSchedule}: Props) => {
             <Typography fontWeight={"bold"}>Gebruikers</Typography>
             <Divider className="mt-3" />
             <Box className="flex flex-col gap-2 mt-3">
-            {data?.map((user) => (
-              <Paper className="p-2" key={user.userId}>{user.userName}</Paper>
-            ))}
+              {data?.map((user) => (
+                <Paper className="p-2" key={user.userId}>
+                  {user.userName}
+                </Paper>
+              ))}
             </Box>
           </Box>
-          <Button onClick={() => {handleClose(); handleSchedule();}} className="mt-4 w-full h-12" variant="outlined" color="primary">
+          <Button
+            onClick={() => {
+              handleClose();
+              handleSchedule();
+            }}
+            className="bg-gradient-primary w-full h-12 mt-4 mb-3 p-2 font-bold"
+            color="secondary"
+            variant="outlined"
+          >
             Schema maken
           </Button>
         </Box>
