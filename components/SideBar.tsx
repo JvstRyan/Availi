@@ -50,7 +50,7 @@ export default function SideBar() {
               draggable={false}
               src="/availi.svg"
               alt={"logo"}
-              width={150}
+              width={160}
               height={100}
             />
           </article>

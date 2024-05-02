@@ -18,6 +18,10 @@ const config: Config = {
       firstblue: "#38B6FF",
       secondblue: "#5271FF",
       white: '#fff',
+      whitesmoke: '#F7F7F7',
+      black: '#000',
+      formbord: '#C2C2C2',
+      formtext: '#656565'
     },
     screens: {
       sm: "480px",
@@ -27,7 +31,9 @@ const config: Config = {
     },
 
     borderRadius: {
+      sm: '3px',
       md: "10px",
+      lg: '20px'
     },
   },
   plugins: [],

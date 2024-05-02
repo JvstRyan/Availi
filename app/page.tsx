@@ -1,78 +1,24 @@
-"use client";
+import Contact from "@/components/Contact"
+import Hero from "@/components/Hero"
+import NavBar from "@/components/NavBar"
+import { Box } from "@mui/material"
+import Image from "next/image"
 
-import { Box, Button, Typography } from "@mui/material";
-import { useState } from "react";
-import LoginForm from "./components/auth/LoginForm";
-import RegistrationForm from "./components/auth/RegistrationForm";
-import { Toaster } from "react-hot-toast";
 
-export default function Login() {
-  const [isRegistering, setIsRegistering] = useState(false);
-
+const page = () => {
   return (
     <>
-      <Toaster />
-      <Box
-        component="section"
-        className="flex flex-col items-center justify-center min-h-screen"
-      >
-        <Typography
-          variant="h1"
-          sx={{
-            fontWeight: "bold",
-            fontSize: "38px",
-            padding: "20px",
-            color: "white",
-          }}
-        >
-          <span className="text-accent">Plan</span>
-          It
-        </Typography>
-        <Box
-          component="article"
-          className="flex items-center justify-center mt-5 bg-white rounded-md"
-        >
-          <Button
-            className={`${
-              isRegistering ? "bg-accent text-white" : "bg-white text-primary"
-            }  h-10 w-48`}
-            onClick={() => setIsRegistering(true)}
-          >
-            Registreren
-          </Button>
-          <Button
-            onClick={() => setIsRegistering(false)}
-            className={`${
-              isRegistering ? "bg-white text-primary" : "bg-accent text-white"
-            }  h-10 w-48`}
-          >
-            Inloggen
-          </Button>
-        </Box>
-        {isRegistering ? (
-          <RegistrationForm setIsRegistering={setIsRegistering} />
-        ) : (
-          <LoginForm />
-        )}
-        <Typography
-          component={"p"}
-          color={"white"}
-          fontSize={"15px"}
-          className="mt-10"
-        >
-          {isRegistering ? "Heb je al een account?" : "Nog geen account?"}
-          <span
-            onClick={
-              isRegistering
-                ? () => setIsRegistering(false)
-                : () => setIsRegistering(true)
-            }
-            className=" underline text-accent cursor-pointer ml-1"
-          >
-            {isRegistering ? "Inloggen" : "Registreren"}
-          </span>
-        </Typography>
-      </Box>
+    <NavBar />
+    <Hero />
+    <Box component={'section'} className="flex justify-center items-center p-20">
+      <Image src={'/helper.svg'} alt="example-steps" width={1100} height={1000} />
+    </Box>
+    <Box component={'section'} className="flex justify-center items-center p-20 mt-10">
+      <Image src={'/examples.svg'} alt="example-images" width={1200} height={1000} />
+    </Box>
+    <Contact />
     </>
-  );
+  )
 }
+
+export default page

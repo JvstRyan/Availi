@@ -1,33 +1,28 @@
-'use client'
+"use client";
 import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import React from "react";
 import { RiLogoutBoxLine } from "react-icons/ri";
-import { logout } from "../api/auth";
+import { logout } from "../app/api/auth";
 import { useRouter } from "next/navigation";
 
-
 const LogoutButton = () => {
+  const router = useRouter();
 
-  const router = useRouter()
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
 
-  const handleLogout= () => 
-  {
-    logout()
-    router.push('/')
-  }
-    
   return (
     <>
       <ListItemButton
         onClick={handleLogout}
-        sx={{ "&:hover": { backgroundColor: "#ffff0"}, color: 'black' }}
+        sx={{ "&:hover": { backgroundColor: "#ffff0" }, color: "black" }}
       >
         <ListItemIcon>
           <RiLogoutBoxLine size={"25px"} color="black" />
         </ListItemIcon>
-        <ListItemText>
-          Uitloggen
-        </ListItemText>
+        <ListItemText>Uitloggen</ListItemText>
       </ListItemButton>
     </>
   );

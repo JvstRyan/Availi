@@ -2,7 +2,7 @@
 
 import { createResponse } from "@/app/api/response";
 import { getAllDates } from "@/app/api/survey";
-import withAuth from "@/app/components/auth/withAuth";
+import withAuth from "@/app/auth/withAuth";
 import SurveyItem from "@/app/dashboard/survey/SurveyItem";
 import SurveyModal from "@/app/dashboard/survey/SurveyModal";
 import useUserStore from "@/userStore";

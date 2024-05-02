@@ -1,19 +1,24 @@
 "use client"
 
 import useUserStore from "@/userStore";
-import { Avatar, Box, ListItem, ListItemAvatar, Typography } from "@mui/material";
-import React from "react";
+import { Avatar, Box, CircularProgress, ListItem, ListItemAvatar, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 
 const Profile = React.memo(() => {
+  const [isClient, setIsClient] = useState(false);
+  const user = useUserStore((state) => state.user);
 
-    const user = useUserStore((state) => state.user);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
-    const splitName = user?.userName.split(' ');
-    let initials = '';
-    if (splitName) {
-        initials = splitName.length > 1  ? `${splitName[0][0]}${splitName[splitName.length - 1][0]}` : `${splitName[0][0]}`;
-    }
-     
+  if (!isClient || !user) {
+    return <div className="p-3"> <CircularProgress color="info"/> </div>;
+  }
+
+  const splitName = user.userName.split(' ');
+  const initials = splitName.length > 1  ? `${splitName[0][0]}${splitName[splitName.length - 1][0]}` : `${splitName[0][0]}`;
+
   return (
     <>
       <ListItem sx={{ marginTop: "5px" }}>
@@ -21,16 +26,16 @@ const Profile = React.memo(() => {
           <Avatar
             className="bg-gradient-primary w-[40px] h-[40px] text-white"
           >
-            {initials}
+           {initials}
           </Avatar>
         </ListItemAvatar>
         <Box className="flex flex-col -gap-10">
             <Typography component="span" variant="body1" noWrap color="black" fontWeight={"semi-bold"}>
-              {user?.userName}
+              {user.userName}
             </Typography>
     
             <Typography component="span" noWrap variant="body2" color="black">
-              {user?.userEmail}
+              {user.userEmail}
             </Typography>
         </Box>
       </ListItem>

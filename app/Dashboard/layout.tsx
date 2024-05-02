@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import SideBar from "../components/SideBar";
+import SideBar from "../../components/SideBar";
 
 export default function DashboardLayout({
   children,
