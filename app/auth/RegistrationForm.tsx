@@ -35,7 +35,10 @@ const RegistrationForm = ({ setIsRegistering }: registering) => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
     onError: (error) => {
-      toast.error(`Account already exists`, { duration: 5000, position: "top-center" });
+      toast.error(`Account already exists`, {
+        duration: 5000,
+        position: "top-center",
+      });
     },
   });
 
@@ -59,57 +62,33 @@ const RegistrationForm = ({ setIsRegistering }: registering) => {
       >
         <TextField
           required
-          color="secondary"
+          color="primary"
           type="text"
           className="w-96"
-          placeholder="Vul je volledige naam in"
+          label="Gebruikers naam"
           onChange={(e) => setRegisterName(e.target.value)}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <FaUserLarge size={"18px"} color="#526BA1" />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
         />
         <TextField
           required
-          color="secondary"
+          color="primary"
+          className="w-96"
           type="email"
-          className="w-96"
-          placeholder="Vul je email in"
+          label="Email"
           onChange={(e) => setRegisterEmail(e.target.value)}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <MdEmail size={"22px"} color="#526BA1" />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
         />
         <TextField
           required
-          color="secondary"
-          type="password"
+          color="primary"
           className="w-96"
+          type="password"
+          label="Wachtwoord"
           onChange={(e) => setRegisterPassword(e.target.value)}
-          placeholder="Maak een wachtwoord aan"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <IoLockClosedSharp size={"21px"} color="#526BA1" />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
         />
 
         <Button
           variant="contained"
           color="secondary"
-          className="bg-accent h-10 w-96 mt-5"
+          className="bg-gradient-primary text-white font-bold h-12 w-96 mt-5"
           type="submit"
         >
           Registreren

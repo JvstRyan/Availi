@@ -21,7 +21,8 @@ const config: Config = {
       whitesmoke: '#F7F7F7',
       black: '#000',
       formbord: '#C2C2C2',
-      formtext: '#656565'
+      formtext: '#656565',
+      iconbg: '#65ADFF'
     },
     screens: {
       sm: "480px",
@@ -33,7 +34,8 @@ const config: Config = {
     borderRadius: {
       sm: '3px',
       md: "10px",
-      lg: '20px'
+      lg: '20px',
+      xl: '50px'
     },
   },
   plugins: [],

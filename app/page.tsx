@@ -11,10 +11,10 @@ const page = () => {
     <NavBar />
     <Hero />
     <Box component={'section'} className="flex justify-center items-center p-20">
-      <Image src={'/helper.svg'} alt="example-steps" width={1100} height={1000} />
+      <Image src={'/helper.svg'} alt="example-steps" width={1100} height={1000} draggable={false} />
     </Box>
     <Box component={'section'} className="flex justify-center items-center p-20 mt-10">
-      <Image src={'/examples.svg'} alt="example-images" width={1200} height={1000} />
+      <Image src={'/examples.svg'} alt="example-images" width={1200} height={1000} draggable={false} />
     </Box>
     <Contact />
     </>

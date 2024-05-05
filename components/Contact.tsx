@@ -1,6 +1,6 @@
 "use client";
-import { Box, Button, TextareaAutosize, TextField } from "@mui/material";
-import React from "react";
+import { contactItems } from "@/constants";
+import { Box, Button, TextField } from "@mui/material";
 
 const Contact = () => {
   return (
@@ -12,7 +12,7 @@ const Contact = () => {
         </h1>
       </section>
       <main className="flex justify-center items-center p-20">
-        <article className="flex flex-col gap-5 shadow-xl p-14 rounded-lg">
+        <article className="flex flex-col gap-5 shadow-xl p-14 rounded-tl-lg rounded-bl-lg">
           <h2 className="text-2xl font-medium">Get in touch</h2>
           <Box
             component="form"
@@ -23,7 +23,7 @@ const Contact = () => {
               <TextField
                 variant="outlined"
                 color="primary"
-                label="Gebruikers naam"
+                label="Naam"
               ></TextField>
               <TextField
                 variant="outlined"
@@ -40,14 +40,30 @@ const Contact = () => {
               placeholder="Bericht..."
               className="focus:outline-none border-solid border rounded-sm border-formbord pl-3 pt-3 "
             />
-            <Button variant="outlined" color="secondary" className="bg-gradient-primary h-10 w-40 font-bold">
-                Verzenden
+            <Button
+              variant="outlined"
+              color="secondary"
+              className="bg-gradient-primary h-10 w-40 font-bold"
+            >
+              Verzenden
             </Button>
           </Box>
         </article>
-        <article className="flex flex-col gap-5 shadow-xl p-10 rounded-lg bg-gradient-primary w-96">
-            <h2 className="text-2xl font-medium text-white">Contact</h2>
-            
+        <article className="flex flex-col gap-10 shadow-xl p-10 rounded-lg bg-gradient-primary w-96 mt-5">
+          <h2 className="text-2xl font-medium text-white">Contact</h2>
+          {contactItems.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <div key={index} className="flex gap-4 items-center">
+                <div className="bg-iconbg p-4 rounded-xl">
+                  <Icon size={22} color="white" />
+                </div>
+                <p className="text-white">
+                  <span className="font-bold">{item.header}</span>: {item.text}
+                </p>
+              </div>
+            );
+          })}
         </article>
       </main>
     </>

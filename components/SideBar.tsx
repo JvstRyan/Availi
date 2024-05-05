@@ -1,8 +1,6 @@
 "use client";
 import { listItems } from "@/constants";
-import {
-  Paper
-} from "@mui/material";
+import { Paper } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,9 +14,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LogoutButton from "./LogoutButton";
 import Profile from "./Profile";
+import withAuth from "@/app/auth/withAuth";
 
-export default function SideBar() {
-  
+const SideBar = () => {
   const drawerWidth = 300;
   const pathname = usePathname();
 
@@ -106,3 +104,5 @@ export default function SideBar() {
     </Paper>
   );
 }
+
+export default withAuth(SideBar);

@@ -1,40 +1,30 @@
-import {
-  Box,
-  TextField,
-  InputAdornment,
-  Typography,
-  Button,
-} from "@mui/material";
-import React, { useState } from "react";
-import { IoLockClosedSharp } from "react-icons/io5";
-import { MdEmail } from "react-icons/md";
-import { useRouter } from "next/navigation";
-import { useQueryClient, useMutation } from "@tanstack/react-query";
-import toast, { Toaster } from "react-hot-toast";
 import { checkAuth, loginUsers } from "@/app/api/auth";
+import { Box, Button, InputAdornment, TextField } from "@mui/material";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { IoLockClosedSharp } from "react-icons/io5";
 
 const LoginForm = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const router = useRouter();
 
-
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: loginUsers,
     onSuccess: async () => {
-
       const isAuthenticated = await checkAuth();
 
-      if (isAuthenticated) 
-      {
+      if (isAuthenticated) {
         toast.success("Je bent ingelogd", {
           duration: 5000,
           position: "top-center",
         });
 
-        router.push('/dashboard/survey')
+        router.push("/dashboard/survey");
       }
 
       setLoginEmail("");
@@ -66,40 +56,24 @@ const LoginForm = () => {
       >
         <TextField
           required
-          color="secondary"
+          color="primary"
           className="w-96"
-          placeholder="Email"
           type="email"
+          label="Email"
           onChange={(e) => setLoginEmail(e.target.value)}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <MdEmail size={"22px"} color="#526BA1" />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
         />
         <TextField
           required
-          color="secondary"
+          color="primary"
           className="w-96"
-          placeholder="Wachtwoord"
           type="password"
+          label="Wachtwoord"
           onChange={(e) => setLoginPassword(e.target.value)}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <IoLockClosedSharp size={"21px"} color="#526BA1" />
-              </InputAdornment>
-            ),
-          }}
-          variant="standard"
         />
         <Button
           variant="contained"
           color="secondary"
-          className="bg-accent h-10 w-96 mt-5"
+          className="bg-gradient-primary font-bold text-white h-12 w-96 mt-5"
           type="submit"
         >
           Inloggen

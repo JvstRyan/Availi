@@ -11,3 +11,7 @@
 textarea::placeholder {
   color: #656565;
 }
+
+input::placeholder {
+  color: black;
+}
