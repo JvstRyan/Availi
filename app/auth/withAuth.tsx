@@ -22,10 +22,10 @@ const withAuth = (WrappedComponent: ComponentType) => {
           if (response.status === 200) {
             setIsAuthenticated(true);
           } else {
-            router.push("/");
+            router.push("/auth");
           }
         } catch (error) {
-          router.push("/");
+          router.push("/auth");
         } finally {
           setLoading(false);
         }

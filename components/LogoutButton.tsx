@@ -10,7 +10,7 @@ const LogoutButton = () => {
 
   const handleLogout = () => {
     logout();
-    router.push("/");
+    router.push("/auth");
   };
 
   return (

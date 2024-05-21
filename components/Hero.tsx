@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import Link from "next/link";
 import React from "react";
 
 const Hero = () => {
@@ -15,6 +16,7 @@ const Hero = () => {
         Availi is een razendsnel schemabuilder dat <br></br> gebaseerd is op de
         beschikbaarheid van je collegas
       </p>
+      <Link href="/dashboard/survey">
       <Button
         variant="outlined"
         color="secondary"
@@ -22,6 +24,7 @@ const Hero = () => {
       >
         Start hier
       </Button>
+      </Link>
     </section>
   );
 };

@@ -1,11 +1,12 @@
 "use client";
 
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import Image from "next/image";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
-import RegistrationForm from "./RegistrationForm";
 import LoginForm from "./LoginForm";
-import Image from "next/image";
+import RegistrationForm from "./RegistrationForm";
+import Link from "next/link";
 
 export default function Login() {
   const [isRegistering, setIsRegistering] = useState(false);
@@ -17,7 +18,8 @@ export default function Login() {
         component="section"
         className="flex flex-col items-center justify-center min-h-screen"
       >
-        <Image src="/availi.svg" alt="logo" width={180} height={100}/>
+        <article className="flex flex-col items-center justify-center shadow-xl p-10 rounded-lg">
+        <Link href="/"><Image src="/availi.svg" alt="logo" width={180} height={100}/></Link>
         {isRegistering ? (
           <RegistrationForm setIsRegistering={setIsRegistering} />
         ) : (
@@ -40,6 +42,7 @@ export default function Login() {
             {isRegistering ? "Inloggen" : "Registreren"}
           </span>
         </Typography>
+        </article>
       </Box>
     </>
   );

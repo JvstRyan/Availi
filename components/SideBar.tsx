@@ -106,3 +106,4 @@ const SideBar = () => {
 }
 
 export default withAuth(SideBar);
+

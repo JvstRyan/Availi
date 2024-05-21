@@ -10,7 +10,7 @@ import { FaGlobe } from "react-icons/fa";
 export const listItems = [
     {
       icon: LuListTodo,
-      text: "Enquête",
+      text: "Beschikbaarheid",
       link: "/dashboard/survey",
     },
     {

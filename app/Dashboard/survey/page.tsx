@@ -1,15 +1,16 @@
-"use client";
+"use client"
 
-import { createResponse } from "@/app/api/response";
+import { createResponse, hasAnswered } from "@/app/api/response";
 import { getAllDates } from "@/app/api/survey";
 import withAuth from "@/app/auth/withAuth";
 import SurveyItem from "@/app/dashboard/survey/SurveyItem";
 import SurveyModal from "@/app/dashboard/survey/SurveyModal";
-import useUserStore from "@/userStore";
+import useUserStore from "@/stores/userStore";
 import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import SubmitModal from "./SubmitModal";
 
 const page = () => {
   const user = useUserStore((state) => state.user);
@@ -20,10 +21,19 @@ const page = () => {
   });
 
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
-  const [isMounted, setIsMounted] = useState(false);
+  const [userHasAnswered, setUserHasAnswered] = useState(false)
+
 
   useEffect(() => {
-    setIsMounted(true);
+    const fetchHasAnswered = async () => 
+    {
+      if(user?.userId) {
+        const response = await hasAnswered(user.userId);
+        setUserHasAnswered(response)
+      }
+    }
+
+    fetchHasAnswered();
   }, []);
 
   const handleAnswerChange = (dateId: string, answer: boolean) => {
@@ -59,10 +69,7 @@ const page = () => {
       })),
     };
     mutation.mutate({ body: response });
-    if (user) {
-      const updatedUser = { ...user, answered: true };
-      setUser(updatedUser);
-    }
+    setUserHasAnswered(true)
   };
   return (
     <>
@@ -71,11 +78,8 @@ const page = () => {
         <Box className="flex justify-end items-end self-end ">
           <SurveyModal />
         </Box>
-        {isMounted && !user?.answered && (
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col w-full text-white mt-5 gap-3"
-          >
+        {!userHasAnswered && (
+          <form className="flex flex-col w-full text-white mt-5 gap-3">
             {data?.map((date) => (
               <SurveyItem
                 key={date.id}
@@ -84,20 +88,12 @@ const page = () => {
                 onAnswerChange={handleAnswerChange}
               />
             ))}
-            <Button
-              disabled={user?.answered}
-              className="bg-gradient-primary p-2.5 font-bold mt-5 mb-5"
-              color="secondary"
-              variant="outlined"
-              type="submit"
-            >
-              Versturen
-            </Button>
+            <SubmitModal handleSubmit={handleSubmit} />
           </form>
         )}
         {isLoading && <CircularProgress color="secondary" />}
       </Box>
-      {isMounted && user?.answered && (
+      {userHasAnswered && (
         <Box className="flex justify-center mt-20 items-center">
           <Typography fontSize={"20px"}>
             Enquête is ingevuld, bedankt!

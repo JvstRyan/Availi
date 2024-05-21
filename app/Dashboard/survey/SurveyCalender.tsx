@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import useUserStore from "@/userStore";
+import useUserStore from "@/stores/userStore";
 import { RxCross2 } from "react-icons/rx";
 
 interface Props {
@@ -57,7 +57,11 @@ export default function SurveyCalender({ handleClose }: Props) {
   return (
     <>
       <Box className="flex flex-col justify-center items-center gap-5">
-        <RxCross2 className="self-end cursor-pointer" onClick={handleClose} size={'28px'}/>
+        <RxCross2
+          className="self-end cursor-pointer"
+          onClick={handleClose}
+          size={"28px"}
+        />
         <DayPicker
           mode="multiple"
           min={1}

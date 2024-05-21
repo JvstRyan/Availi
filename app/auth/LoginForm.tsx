@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { IoLockClosedSharp } from "react-icons/io5";
+import { hasAnswered } from "../api/response";
 
 const LoginForm = () => {
   const [loginEmail, setLoginEmail] = useState("");
@@ -17,13 +17,12 @@ const LoginForm = () => {
     mutationFn: loginUsers,
     onSuccess: async () => {
       const isAuthenticated = await checkAuth();
-
+      console.log()
       if (isAuthenticated) {
         toast.success("Je bent ingelogd", {
           duration: 5000,
           position: "top-center",
         });
-
         router.push("/dashboard/survey");
       }
 
