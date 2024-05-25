@@ -16,6 +16,11 @@ import { handleSchedule } from "@/app/api/response";
 import { useState } from "react";
 import { ReceivedResponse } from "../response/page";
 import ScheduleModal from "./ScheduleModal";
+import adminAuth from "@/app/auth/adminAuth";
+
+interface User {
+  userName: string
+}
 
 const page = () => {
   const [receivedData, setReceivedData] = useState<ReceivedResponse[]>();
@@ -38,7 +43,7 @@ const page = () => {
   }
 
   // Initialize an empty object to store the tasks assigned to each user
-  let userTasks: any = {};
+  let userTasks: Record<string, string[]> = {};
 
   const tableData = receivedData
     ?.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
@@ -52,30 +57,42 @@ const page = () => {
       const month = date.toLocaleString("default", { month: "long" });
       const tableDate = `${weekDay} ${day} ${month}`;
 
-      // Assign tasks to users
       const tasks = ["audio", "video", "podium", "invaller"];
-      const assignedUsers: any = {};
+      const assignedUsers: Record<string, string> = {};
 
       for (let task of tasks) {
-        for (let user of randomizedUsers) {
-          const userName = user.userName.split(" ")[0];
+        let user: User | undefined;
+        let userName: string;
 
-          // If the user hasn't been assigned this task yet, assign it to them
-          if (!userTasks[userName] || !userTasks[userName].includes(task)) {
-            assignedUsers[task] = userName;
+        // Filter out users who have already done the task or have been assigned a task today
+        const usersWhoHaventDoneTask = randomizedUsers.filter(
+          (u) =>
+            !userTasks[u.userName.split(" ")[0]] ||
+            !userTasks[u.userName.split(" ")[0]].includes(task)
+        );
 
-            // Add the task to the user's list of assigned tasks
-            if (userTasks[userName]) {
-              userTasks[userName].push(task);
-            } else {
-              userTasks[userName] = [task];
-            }
+        if (usersWhoHaventDoneTask.length > 0) {
+          // Pick a user who hasn't done the task
+          user = usersWhoHaventDoneTask[0];
+          userName = user.userName.split(" ")[0];
 
-            // Remove the user from the list of available users
-            randomizedUsers = randomizedUsers.filter((u) => u !== user);
+          // Remove the user from the list of available users
+          randomizedUsers = randomizedUsers.filter((u) => u !== user);
+        } else {
+          // If all users have done the task, assign the task to a random user
+          user =
+            randomizedUsers[Math.floor(Math.random() * randomizedUsers.length)];
+          userName = user.userName.split(" ")[0];
+        }
 
-            break;
-          }
+        // Assign the task to the user
+        assignedUsers[task] = userName;
+
+        // Add the task to the user's list of assigned tasks
+        if (userTasks[userName]) {
+          userTasks[userName].push(task);
+        } else {
+          userTasks[userName] = [task];
         }
       }
 
@@ -176,4 +193,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default adminAuth(page);
