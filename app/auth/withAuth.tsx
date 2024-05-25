@@ -2,12 +2,14 @@ import React, { useEffect, ComponentType, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { CircularProgress } from "@mui/material";
+import useUserStore from "@/stores/userStore";
 
 const withAuth = (WrappedComponent: ComponentType) => {
   const WithAuthComponent: ComponentType = (props) => {
     const router = useRouter();
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const user = useUserStore((state) => state.user);
 
     useEffect(() => {
       const checkAuth = async () => {
@@ -19,8 +21,13 @@ const withAuth = (WrappedComponent: ComponentType) => {
             }
           );
 
-          if (response.status === 200) {
+          if (
+            response.status === 200 &&
+            (user?.userRole === "admin" || user?.userRole === "volunteer")
+          ) {
             setIsAuthenticated(true);
+          } else if (user?.userRole === "guest") {
+            router.push("/waiting");
           } else {
             router.push("/auth");
           }
