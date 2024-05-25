@@ -23,7 +23,6 @@ const ResponseItem = ({dateId, date: incomingDate, availableUsers}: ReceivedResp
      {availableUsers.map((item) => (
         <Paper elevation={6} key={item.userId} className="bg-secondary w-11/12 mt-3 flex justify-between items-center">
         <Typography className="p-2 ml-3">{item.userName}</Typography>
-        <BiEditAlt size={"21px"} className="mr-4" />
       </Paper>
      ))}
     </>

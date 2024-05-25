@@ -4,7 +4,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { hasAnswered } from "../api/response";
 
 const LoginForm = () => {
   const [loginEmail, setLoginEmail] = useState("");

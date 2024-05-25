@@ -3,15 +3,18 @@
 import { Button, Modal, Box} from "@mui/material";
 import React from "react";
 import SurveyCalender from "./SurveyCalender";
+import useUserStore from "@/stores/userStore";
 
 
 export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const user = useUserStore((state) => state.user);
 
   return (
     <div>
+      { user?.userRole === "admin" &&
       <Button
         onClick={handleOpen}
         variant="outlined"
@@ -19,7 +22,7 @@ export default function BasicModal() {
         color="secondary"
       >
         Nieuwe Enquête
-      </Button>
+      </Button>}
       <Modal open={open} onClose={handleClose}>
         <Box
           sx={{

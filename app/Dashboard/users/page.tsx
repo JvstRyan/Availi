@@ -1,11 +1,11 @@
 "use client";
 
 import { getUsers } from "@/app/api/users";
+import adminAuth from "@/app/auth/adminAuth";
 import { CircularProgress } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import UserCreationModal from "./UserCreationModal";
 import UserListItem from "./UserListItem";
-import withAuth from "@/app/auth/withAuth";
 
 const page = () => {
   const { data, isLoading } = useQuery({
@@ -38,4 +38,4 @@ const page = () => {
   );
 };
 
-export default withAuth(page);
+export default adminAuth(page);
