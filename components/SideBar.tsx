@@ -15,10 +15,12 @@ import { usePathname } from "next/navigation";
 import LogoutButton from "./LogoutButton";
 import Profile from "./Profile";
 import withAuth from "@/app/auth/withAuth";
+import useUserStore from "@/stores/userStore";
 
 const SideBar = () => {
   const drawerWidth = 300;
   const pathname = usePathname();
+  const user = useUserStore((state) => state.user);
 
   return (
     <Paper sx={{ display: "flex" }}>
@@ -57,30 +59,32 @@ const SideBar = () => {
               {listItems.map((item, index) => {
                 const isActive = item.link === pathname;
                 const Icon = item.icon;
-                return (
-                  <Link href={item.link}>
-                    <ListItemButton
-                      key={index}
-                      className={` p-3 ${
-                        isActive ? "bg-gradient-primary" : "text-black"
-                      }`}
-                    >
-                      <ListItemIcon className="ml-[25px]">
-                        <Icon
-                          size={"25px"}
-                          color={`${isActive ? "white" : "black"}`}
-                        />
-                      </ListItemIcon>
-                      <p
-                        className={` text-md ${
-                          isActive ? "text-white font-bold" : "text-black"
+                if (user?.userRole && item.role.includes(user?.userRole)) {
+                  return (
+                    <Link href={item.link}>
+                      <ListItemButton
+                        key={index}
+                        className={` p-3 ${
+                          isActive ? "bg-gradient-primary" : "text-black"
                         }`}
                       >
-                        {item.text}
-                      </p>
-                    </ListItemButton>
-                  </Link>
-                );
+                        <ListItemIcon className="ml-[25px]">
+                          <Icon
+                            size={"25px"}
+                            color={`${isActive ? "white" : "black"}`}
+                          />
+                        </ListItemIcon>
+                        <p
+                          className={` text-md ${
+                            isActive ? "text-white font-bold" : "text-black"
+                          }`}
+                        >
+                          {item.text}
+                        </p>
+                      </ListItemButton>
+                    </Link>
+                  );
+                }
               })}
             </ul>
           </List>
@@ -103,7 +107,6 @@ const SideBar = () => {
       </Drawer>
     </Paper>
   );
-}
+};
 
 export default withAuth(SideBar);
-
