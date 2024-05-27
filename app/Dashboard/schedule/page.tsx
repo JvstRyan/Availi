@@ -19,7 +19,7 @@ import ScheduleModal from "./ScheduleModal";
 import adminAuth from "@/app/auth/adminAuth";
 
 interface User {
-  userName: string
+  userName: string;
 }
 
 const page = () => {
@@ -75,15 +75,27 @@ const page = () => {
           // Pick a user who hasn't done the task
           user = usersWhoHaventDoneTask[0];
           userName = user.userName.split(" ")[0];
-
-          // Remove the user from the list of available users
-          randomizedUsers = randomizedUsers.filter((u) => u !== user);
         } else {
-          // If all users have done the task, assign the task to a random user
+          // If all users have done the task, stop assigning tasks
+          let usersWithoutTask = randomizedUsers.filter(
+            (u) =>
+              !Object.values(assignedUsers).includes(u.userName.split(" ")[0])
+          );
+
+          if (usersWithoutTask.length === 0) {
+            // If all users have a task, stop assigning tasks
+            return;
+          }
+
           user =
-            randomizedUsers[Math.floor(Math.random() * randomizedUsers.length)];
+            usersWithoutTask[
+              Math.floor(Math.random() * usersWithoutTask.length)
+            ];
           userName = user.userName.split(" ")[0];
         }
+
+        // Remove the user from the list of available users
+        randomizedUsers = randomizedUsers.filter((u) => u !== user);
 
         // Assign the task to the user
         assignedUsers[task] = userName;
@@ -156,30 +168,30 @@ const page = () => {
                       component="th"
                       scope="row"
                     >
-                      {row.date}
+                      {row?.date}
                     </TableCell>
                     <TableCell className="text-[16px]" align="center">
                       <input
                         className="outline-none max-w-15"
-                        placeholder={row.video}
+                        placeholder={row?.video}
                       />
                     </TableCell>
                     <TableCell className="text-[16px]" align="center">
                       <input
                         className="outline-none max-w-15"
-                        placeholder={row.audio}
+                        placeholder={row?.audio}
                       />
                     </TableCell>
                     <TableCell className="text-[16px]" align="center">
                       <input
                         className="outline-none max-w-15"
-                        placeholder={row.podium}
+                        placeholder={row?.podium}
                       />
                     </TableCell>
                     <TableCell className="text-[16px]" align="center">
                       <input
                         className="outline-none max-w-15"
-                        placeholder={row.invaller}
+                        placeholder={row?.invaller}
                       />
                     </TableCell>
                   </TableRow>
