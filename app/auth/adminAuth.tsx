@@ -5,7 +5,7 @@ import { CircularProgress } from "@mui/material";
 import useUserStore from "@/stores/userStore";
 
 const adminAuth = (WrappedComponent: ComponentType) => {
-  const adminAuthComponent: ComponentType = (props) => {
+  const AdminAuthComponent: ComponentType = (props) => {
     const router = useRouter();
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -21,17 +21,14 @@ const adminAuth = (WrappedComponent: ComponentType) => {
             }
           );
 
-          if (
-            response.status === 200 &&
-            (user?.userRole === "admin")
-          ) {
+          if (response.status === 200 && user?.userRole === "admin") {
             setIsAuthenticated(true);
           } else if (user?.userRole === "volunteer") {
             router.push("/dashboard/survey");
           } else if (user?.userRole === "guest") {
             router.push("/waiting");
           } else {
-            router.push("/auth")
+            router.push("/auth");
           }
         } catch (error) {
           router.push("/auth");
@@ -40,7 +37,7 @@ const adminAuth = (WrappedComponent: ComponentType) => {
         }
       };
       checkAuth();
-    }, []);
+    }, [router, user?.userRole]);
 
     if (loading || !isAuthenticated) {
       return (
@@ -54,7 +51,7 @@ const adminAuth = (WrappedComponent: ComponentType) => {
     return <WrappedComponent {...props} />;
   };
 
-  return adminAuthComponent;
+  return AdminAuthComponent;
 };
 
 export default adminAuth;

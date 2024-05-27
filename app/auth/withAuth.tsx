@@ -38,7 +38,7 @@ const withAuth = (WrappedComponent: ComponentType) => {
         }
       };
       checkAuth();
-    }, []);
+    }, [router, user?.userRole]);
 
     if (loading || !isAuthenticated) {
       return (

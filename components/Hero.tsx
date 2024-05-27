@@ -8,9 +8,9 @@ const Hero = () => {
       <h1 className="text-6xl text-center font-semibold leading-tight tracking-normal">
         Creëer <span className="gradient-text font-bold"> razendsnel </span>
         <br></br>
-        schema's op basis van de <br></br>
+        schema&apos;s op basis van de <br></br>
         <span className="gradient-text font-bold">availi-bility</span> van je
-        collega's.
+        collega&apos;s.
       </h1>
       <p className="text-center text-xl">
         Availi is een razendsnel schemabuilder dat <br></br> gebaseerd is op de

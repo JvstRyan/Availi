@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { createResponse, hasAnswered } from "@/app/api/response";
 import { getAllDates } from "@/app/api/survey";
@@ -14,27 +14,24 @@ import SubmitModal from "./SubmitModal";
 
 const Page = () => {
   const user = useUserStore((state) => state.user);
-  const setUser = useUserStore((state) => state.setUser);
   const { data, isLoading } = useQuery({
     queryKey: ["dates"],
     queryFn: getAllDates,
   });
 
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
-  const [userHasAnswered, setUserHasAnswered] = useState(false)
-
+  const [userHasAnswered, setUserHasAnswered] = useState(false);
 
   useEffect(() => {
-    const fetchHasAnswered = async () => 
-    {
-      if(user?.userId) {
+    const fetchHasAnswered = async () => {
+      if (user?.userId) {
         const response = await hasAnswered(user.userId);
-        setUserHasAnswered(response)
+        setUserHasAnswered(response);
       }
-    }
+    };
 
     fetchHasAnswered();
-  }, []);
+  }, [user?.userId]);
 
   const handleAnswerChange = (dateId: string, answer: boolean) => {
     setAnswers((prevAnswers) => ({
@@ -69,7 +66,7 @@ const Page = () => {
       })),
     };
     mutation.mutate({ body: response });
-    setUserHasAnswered(true)
+    setUserHasAnswered(true);
   };
   return (
     <>

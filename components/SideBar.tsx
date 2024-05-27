@@ -61,9 +61,8 @@ const SideBar = () => {
                 const Icon = item.icon;
                 if (user?.userRole && item.role.includes(user?.userRole)) {
                   return (
-                    <Link href={item.link}>
+                    <Link key={index} href={item.link}>
                       <ListItemButton
-                        key={index}
                         className={` p-3 ${
                           isActive ? "bg-gradient-primary" : "text-black"
                         }`}

@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
-const Profile = React.memo(() => {
+const Profile = () => {
   const [isClient, setIsClient] = useState(false);
   const user = useUserStore((state) => state.user);
 
@@ -60,6 +60,6 @@ const Profile = React.memo(() => {
       </ListItem>
     </>
   );
-});
+};
 
 export default Profile;

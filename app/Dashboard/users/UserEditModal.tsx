@@ -27,7 +27,7 @@ const UserEditModal = ({ name, email, roles, id }: Users) => {
     } else {
       setIsChanged(false);
     }
-  }, [updatedName, updatedEmail, updatedRole]);
+  }, [updatedName, updatedEmail, updatedRole, name, email, roles]);
 
   const queryClient = useQueryClient();
 
