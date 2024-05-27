@@ -39,7 +39,6 @@ const LoginForm = () => {
   const loginUser = async () => {
    const response = await mutation.mutateAsync({ body: { email: loginEmail, password: loginPassword } });
    console.log(response.headers['set-cookie']);
-   router.push("/dashboard/survey")
   };
 
   return (

@@ -32,6 +32,7 @@ const withAuth = (WrappedComponent: ComponentType) => {
             router.push("/auth");
           }
         } catch (error) {
+          console.error(error)
           router.push("/auth");
         } finally {
           setLoading(false);
