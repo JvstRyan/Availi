@@ -21,7 +21,7 @@ const LoginForm = () => {
           duration: 5000,
           position: "top-center",
         });
-        
+
         router.push("/dashboard/survey");
       }
 
@@ -38,8 +38,7 @@ const LoginForm = () => {
   });
 
   const loginUser = async () => {
-   const response = await mutation.mutateAsync({ body: { email: loginEmail, password: loginPassword } });
-   console.log(response.headers['set-cookie']);
+   await mutation.mutateAsync({ body: { email: loginEmail, password: loginPassword } });
   };
 
   return (
