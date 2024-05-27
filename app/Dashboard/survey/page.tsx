@@ -3,14 +3,14 @@
 import { createResponse, hasAnswered } from "@/app/api/response";
 import { getAllDates } from "@/app/api/survey";
 import withAuth from "@/app/auth/withAuth";
-import SurveyItem from "@/app/dashboard/survey/SurveyItem";
-import SurveyModal from "@/app/dashboard/survey/SurveyModal";
 import useUserStore from "@/stores/userStore";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import SubmitModal from "./SubmitModal";
+import SurveyItem from "./SurveyItem";
+import SurveyModal from "./SurveyModal";
 
 const Page = () => {
   const user = useUserStore((state) => state.user);
