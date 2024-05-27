@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import SubmitModal from "./SubmitModal";
 
-const page = () => {
+const Page = () => {
   const user = useUserStore((state) => state.user);
   const setUser = useUserStore((state) => state.setUser);
   const { data, isLoading } = useQuery({
@@ -104,4 +104,4 @@ const page = () => {
   );
 };
 
-export default withAuth(page);
+export default withAuth(Page);

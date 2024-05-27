@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import UserCreationModal from "./UserCreationModal";
 import UserListItem from "./UserListItem";
 
-const page = () => {
+const Page = () => {
   const { data, isLoading } = useQuery({
     queryFn: getUsers,
     queryKey: ["users"],
@@ -38,4 +38,4 @@ const page = () => {
   );
 };
 
-export default adminAuth(page);
+export default adminAuth(Page);

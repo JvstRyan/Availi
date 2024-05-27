@@ -22,7 +22,7 @@ interface User {
   userName: string;
 }
 
-const page = () => {
+const Page = () => {
   const [receivedData, setReceivedData] = useState<ReceivedResponse[]>();
   const [showTable, setShowTable] = useState(false);
 
@@ -205,4 +205,4 @@ const page = () => {
   );
 };
 
-export default adminAuth(page);
+export default adminAuth(Page);

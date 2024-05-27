@@ -5,7 +5,7 @@ import { Box } from "@mui/material"
 import Image from "next/image"
 
 
-const page = () => {
+const Page = () => {
   return (
     <>
     <NavBar />
@@ -21,4 +21,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

@@ -14,7 +14,7 @@ export interface ReceivedResponse {
   }[];
 }
 
-const page = () => {
+const Page = () => {
   const { data } = useQuery<ReceivedResponse[]>({
     queryKey: ["responses"],
     queryFn: getResponses,
@@ -38,4 +38,4 @@ const page = () => {
   );
 };
 
-export default adminAuth(page)
+export default adminAuth(Page)
