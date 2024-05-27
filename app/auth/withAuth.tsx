@@ -15,7 +15,7 @@ const withAuth = (WrappedComponent: ComponentType) => {
       const checkAuth = async () => {
         try {
           const response = await axios.get(
-            "https://localhost:7220/api/Auth/authorize",
+            "https://availi.azurewebsites.net/api/Auth/authorize",
             {
               withCredentials: true,
             }

@@ -8,7 +8,7 @@ export const registerUsers = async ({
 }) => {
   try {
     const response = await axios.post(
-      `https://localhost:7220/api/Auth/register`,
+      `https://availi.azurewebsites.net/api/Auth/register`,
       body
     );
     if (response) return response.data;
@@ -26,7 +26,7 @@ export const loginUsers = async ({
 }) => {
   try {
     const response = await axios.post(
-      `https://localhost:7220/api/Auth/login`,
+      `https://availi.azurewebsites.net/Auth/login`,
       body,
       {
         withCredentials: true,
@@ -34,7 +34,7 @@ export const loginUsers = async ({
     );
     if (response && response.data) {
       const data = response.data;
-      console.log(response.data)
+      console.log(response.data);
       useUserStore.getState().setUser({
         userRole: data.userRole,
         userName: data.userName,
@@ -53,7 +53,7 @@ export const loginUsers = async ({
 export const logout = async () => {
   try {
     const response = await axios.post(
-      "https://localhost:7220/api/Auth/logout",
+      "https://availi.azurewebsites.net/api/Auth/logout",
       {},
       {
         withCredentials: true,
@@ -68,7 +68,7 @@ export const logout = async () => {
 export const checkAuth = async () => {
   try {
     const response = await axios.get(
-      "https://localhost:7220/api/Auth/authorize",
+      "https://availi.azurewebsites.net/api/Auth/authorize",
       {
         withCredentials: true,
       }
@@ -81,5 +81,3 @@ export const checkAuth = async () => {
     throw error;
   }
 };
-
-
