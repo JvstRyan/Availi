@@ -16,7 +16,6 @@ const LoginForm = () => {
     mutationFn: loginUsers,
     onSuccess: async () => {
       const isAuthenticated = await checkAuth();
-      console.log()
       if (isAuthenticated) {
         toast.success("Je bent ingelogd", {
           duration: 5000,
@@ -37,8 +36,10 @@ const LoginForm = () => {
     },
   });
 
-  const loginUser = () => {
-    mutation.mutate({ body: { email: loginEmail, password: loginPassword } });
+  const loginUser = async () => {
+   const response = await mutation.mutateAsync({ body: { email: loginEmail, password: loginPassword } });
+   console.log(response.headers['set-cookie']);
+   router.push("/dashboard/survey")
   };
 
   return (
