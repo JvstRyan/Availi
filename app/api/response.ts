@@ -16,7 +16,7 @@ export interface ResponseUser {
 
 export const getResponses = async () => {
   try {
-    const response = await axios.get(`https://localhost:7220/api/Response`);
+    const response = await axios.get(`https://availi.azurewebsites.net/api/Response`);
     if (response && response.data) return response.data;
     else throw new Error("Fetching of responses failed");
   } catch (error) {
@@ -27,7 +27,7 @@ export const getResponses = async () => {
 export const createResponse = async ({ body }: { body: Response }) => {
   try {
     const response = await axios.post(
-      `https://localhost:7220/api/Response`,
+      `https://availi.azurewebsites.net/api/Response`,
       body
     );
     if (response && response.data) return response.data;
@@ -40,7 +40,7 @@ export const createResponse = async ({ body }: { body: Response }) => {
 export const getResponseUsers = async () => {
   try {
     const response = await axios.get<ResponseUser[]>(
-      `https://localhost:7220/api/Response/users`
+      `https://availi.azurewebsites.net/Response/users`
     );
     if (response && response.data) return response.data;
     else throw new Error("Fetching response users failed");
@@ -52,7 +52,7 @@ export const getResponseUsers = async () => {
 
 export const handleSchedule = async () => {
   try {
-    const res = await fetch(`https://localhost:7220/api/Response`, {
+    const res = await fetch(`https://availi.azurewebsites.net/api/Response`, {
       cache: "force-cache",
     });
     if (!res.ok) {
@@ -67,7 +67,7 @@ export const handleSchedule = async () => {
 export const hasAnswered = async (userId: string | undefined) => {
   try {
     const response = await axios.get(
-      `https://localhost:7220/api/Response/hasUserAnswered?userId=${userId}`
+      `https://availi.azurewebsites.net/api/Response/hasUserAnswered?userId=${userId}`
     );
 
     if (response) 

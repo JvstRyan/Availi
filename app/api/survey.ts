@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+
 import axios from "axios";
 
 
@@ -13,7 +13,7 @@ export const getAllDates = async () =>
 {
     try 
     {
-      const response = await axios.get<DatesData[]>('https://localhost:7220/api/Survey')
+      const response = await axios.get<DatesData[]>('https://availi.azurewebsites.net/api/Survey')
       if(response && response.data)
       {
         return response.data
@@ -36,7 +36,7 @@ export const postDates = async (datesList: {dates: string[] | undefined}) =>
 {
     try 
     {
-        const response = await axios.post('https://localhost:7220/api/Survey', datesList)
+        const response = await axios.post('https://availi.azurewebsites.net/api/Survey', datesList)
 
         if(response && response.data) 
              return response.data

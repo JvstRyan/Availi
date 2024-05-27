@@ -16,7 +16,7 @@ type UpdateUser = {
 export const getUsers = async () => {
   try {
     const response = await axios.get<Users[]>(
-      "https://localhost:7220/api/Users/users"
+      "https://availi.azurewebsites.net/api/Users/users"
     );
     if (response && response.data) {
       return response.data;
@@ -37,7 +37,7 @@ export const updateUsers = async ({
 }) => {
   try {
     const response = await axios.put(
-      `https://localhost:7220/api/Users/${_id}`,
+      `https://availi.azurewebsites.net/api/Users/${_id}`,
       body
     );
     if (response) return response.data;
@@ -50,7 +50,7 @@ export const updateUsers = async ({
 export const deleteUsers = async ({ _id }: { _id: string }) => {
   try {
     const response = await axios.delete(
-      `https://localhost:7220/api/Users/${_id}`
+      `https://availi.azurewebsites.net/api/Users/${_id}`
     );
     if (response) return response.data;
     else throw new Error("Delete request failed");

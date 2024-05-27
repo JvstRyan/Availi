@@ -1,13 +1,13 @@
-import * as React from "react";
-import toast, { Toaster } from 'react-hot-toast';
+import { deleteUsers } from "@/app/api/users";
+import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import { FaRegTrashAlt } from "react-icons/fa";
-import { CgDanger } from "react-icons/cg";
-import { duration, Typography } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteUsers } from "@/app/api/users";
+import * as React from "react";
+import toast, { Toaster } from 'react-hot-toast';
+import { CgDanger } from "react-icons/cg";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 type Props = 
 {

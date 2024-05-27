@@ -34,7 +34,6 @@ export const loginUsers = async ({
     );
     if (response && response.data) {
       const data = response.data;
-      console.log(response.data);
       useUserStore.getState().setUser({
         userRole: data.userRole,
         userName: data.userName,

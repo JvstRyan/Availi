@@ -1,6 +1,5 @@
 import { Box, Typography, Paper } from "@mui/material";
 import React from "react";
-import { BiEditAlt } from "react-icons/bi";
 import { ReceivedResponse } from "./page";
 
 const ResponseItem = ({dateId, date: incomingDate, availableUsers}: ReceivedResponse ) => {
