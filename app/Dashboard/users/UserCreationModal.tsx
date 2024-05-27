@@ -1,4 +1,4 @@
-import { registerUsers } from "@/app/api/auth";
+import { registerUsers } from "@/api/auth";
 import { Paper, TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";

@@ -7,10 +7,10 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow
+  TableRow,
 } from "@mui/material";
 
-import { handleSchedule } from "@/app/api/response";
+import { handleSchedule } from "@/api/response";
 import adminAuth from "@/app/auth/adminAuth";
 import { useState } from "react";
 import { ReceivedResponse } from "../response/page";

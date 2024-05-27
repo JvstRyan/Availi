@@ -1,4 +1,4 @@
-import { getResponseUsers } from "@/app/api/response";
+import { getResponseUsers } from "@/api/response";
 import { Box, Button, Divider, Modal, Paper, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";

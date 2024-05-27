@@ -1,5 +1,5 @@
 "use client";
-import { getResponses } from "@/app/api/response";
+import { getResponses } from "@/api/response";
 import { Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import ResponseItem from "./ResponseItem";
@@ -24,7 +24,9 @@ const ResponsePage = () => {
     <>
       <Box className="mb-10">
         {data
-          ?.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+          ?.sort(
+            (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+          )
           .map((item) => (
             <ResponseItem
               key={item.dateId}
@@ -38,4 +40,4 @@ const ResponsePage = () => {
   );
 };
 
-export default adminAuth(ResponsePage)
+export default adminAuth(ResponsePage);

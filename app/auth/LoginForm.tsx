@@ -1,4 +1,4 @@
-import { checkAuth, loginUsers } from "@/app/api/auth";
+import { checkAuth, loginUsers } from "@/api/auth";
 import { Box, Button, InputAdornment, TextField } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -22,7 +22,7 @@ const LoginForm = () => {
           position: "top-center",
         });
 
-        router.push("/dashboard/survey");
+        router.push("/Dashboard/survey");
       }
 
       setLoginEmail("");
@@ -38,7 +38,9 @@ const LoginForm = () => {
   });
 
   const loginUser = async () => {
-   await mutation.mutateAsync({ body: { email: loginEmail, password: loginPassword } });
+    await mutation.mutateAsync({
+      body: { email: loginEmail, password: loginPassword },
+    });
   };
 
   return (

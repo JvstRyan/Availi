@@ -1,4 +1,4 @@
-import { registerUsers } from "@/app/api/auth";
+import { registerUsers } from "@/api/auth";
 import { Button, InputAdornment, TextField } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";

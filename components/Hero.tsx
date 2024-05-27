@@ -16,7 +16,7 @@ const Hero = () => {
         Availi is een razendsnel schemabuilder dat <br></br> gebaseerd is op de
         beschikbaarheid van je collegas
       </p>
-      <Link href="/dashboard/survey">
+      <Link href="/Dashboard/survey">
       <Button
         variant="outlined"
         color="secondary"

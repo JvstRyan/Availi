@@ -1,6 +1,6 @@
 "use client";
 
-import { getUsers } from "@/app/api/users";
+import { getUsers } from "@/api/users";
 import adminAuth from "@/app/auth/adminAuth";
 import { CircularProgress } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";

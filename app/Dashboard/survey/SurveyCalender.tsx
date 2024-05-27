@@ -1,6 +1,6 @@
 "use client";
 import toast, { Toaster } from "react-hot-toast";
-import { postDates } from "@/app/api/survey";
+import { postDates } from "@/api/survey";
 import { Alert, Box, Button } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";

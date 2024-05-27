@@ -24,7 +24,7 @@ const adminAuth = (WrappedComponent: ComponentType) => {
           if (response.status === 200 && user?.userRole === "admin") {
             setIsAuthenticated(true);
           } else if (user?.userRole === "volunteer") {
-            router.push("/dashboard/survey");
+            router.push("/Dashboard/survey");
           } else if (user?.userRole === "guest") {
             router.push("/waiting");
           } else {

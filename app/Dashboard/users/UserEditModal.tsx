@@ -1,4 +1,4 @@
-import { updateUsers, Users } from "@/app/api/users";
+import { updateUsers, Users } from "@/api/users";
 import { MenuItem, Select, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -22,8 +22,12 @@ const UserEditModal = ({ name, email, roles, id }: Users) => {
   const [isChanged, setIsChanged] = useState(false);
 
   useEffect(() => {
-    if (updatedName !== name || updatedEmail !== email || updatedRole !== roles) {
-      setIsChanged(true)
+    if (
+      updatedName !== name ||
+      updatedEmail !== email ||
+      updatedRole !== roles
+    ) {
+      setIsChanged(true);
     } else {
       setIsChanged(false);
     }
@@ -36,48 +40,54 @@ const UserEditModal = ({ name, email, roles, id }: Users) => {
     onSuccess: () => {
       handleClose();
       queryClient.invalidateQueries({ queryKey: ["users"] });
-      toast.success("Gebruiker is aangepast", {duration: 4000, position: "bottom-right" })
-      setUpdatedRole('')
-      setUpdatedName('')
-      setUpdatedEmail('')
+      toast.success("Gebruiker is aangepast", {
+        duration: 4000,
+        position: "bottom-right",
+      });
+      setUpdatedRole("");
+      setUpdatedName("");
+      setUpdatedEmail("");
     },
   });
 
-  const handleUpdate = () => 
-  {
-  const updatedData: Partial<Users> = {};
+  const handleUpdate = () => {
+    const updatedData: Partial<Users> = {};
 
-  if (updatedName !== name) 
-  {
-    updatedData.name = updatedName;
-  }
+    if (updatedName !== name) {
+      updatedData.name = updatedName;
+    }
 
-  if (updatedEmail != email) 
-  {
-    updatedData.email = updatedEmail;
-  }
+    if (updatedEmail != email) {
+      updatedData.email = updatedEmail;
+    }
 
-  if (updatedRole !== roles) 
-  {
-     updatedData.roles = updatedRole
-  }
+    if (updatedRole !== roles) {
+      updatedData.roles = updatedRole;
+    }
 
-
-  mutation.mutate({ _id: id, body: updatedData });
-  }
-
-
+    mutation.mutate({ _id: id, body: updatedData });
+  };
 
   return (
     <div>
-     <Toaster />
+      <Toaster />
       <Button onClick={handleOpen}>
         <FaEdit color="black" size={"22px"} />
       </Button>
       <Modal open={open} onClose={handleClose}>
         <Box className="absolute top-1/4 left-2/4 -translate-x-10 -translate-y-10 w-1/4 p-10  bg-white">
-          <form onSubmit={(e) => {e.preventDefault(); handleUpdate();}} className="flex flex-col justift-center items-center gap-5 ">
-          <RxCross2 className="self-end cursor-pointer" onClick={handleClose} size={'28px'}/>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleUpdate();
+            }}
+            className="flex flex-col justift-center items-center gap-5 "
+          >
+            <RxCross2
+              className="self-end cursor-pointer"
+              onClick={handleClose}
+              size={"28px"}
+            />
             <TextField
               color="primary"
               label="Gebruikers naam"

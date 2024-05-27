@@ -1,7 +1,7 @@
 "use client";
 
-import { createResponse, hasAnswered } from "@/app/api/response";
-import { getAllDates } from "@/app/api/survey";
+import { createResponse, hasAnswered } from "@/api/response";
+import { getAllDates } from "@/api/survey";
 import withAuth from "@/app/auth/withAuth";
 import useUserStore from "@/stores/userStore";
 import { Box, CircularProgress, Typography } from "@mui/material";

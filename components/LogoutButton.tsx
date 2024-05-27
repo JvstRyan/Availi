@@ -2,7 +2,7 @@
 import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import React from "react";
 import { RiLogoutBoxLine } from "react-icons/ri";
-import { logout } from "../app/api/auth";
+import { logout } from "../api/auth";
 import { useRouter } from "next/navigation";
 
 const LogoutButton = () => {

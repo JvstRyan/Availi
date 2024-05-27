@@ -11,25 +11,25 @@ export const listItems = [
     {
       icon: LuListTodo,
       text: "Beschikbaarheid",
-      link: "/dashboard/survey",
+      link: "/Dashboard/survey",
       role: ["volunteer", "admin"]
     },
     {
       icon: GrSchedules,
       text: "Schema",
-      link: "/dashboard/schedule",
+      link: "/Dashboard/schedule",
       role: ["admin"]
     },
     {
       icon: PiUsers,
       text: "Gebruikers",
-      link: "/dashboard/users",
+      link: "/Dashboard/users",
       role: ["admin"]
     },
     {
       icon: IoIosCheckboxOutline,
       text: "Aanwezigen",
-      link: "/dashboard/response",
+      link: "/Dashboard/response",
       role: ["admin"]
     },
 ];
