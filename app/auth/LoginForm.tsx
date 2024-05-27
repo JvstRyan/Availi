@@ -21,6 +21,7 @@ const LoginForm = () => {
           duration: 5000,
           position: "top-center",
         });
+        
         router.push("/dashboard/survey");
       }
 
