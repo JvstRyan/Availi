@@ -26,7 +26,7 @@ export const loginUsers = async ({
 }) => {
   try {
     const response = await axios.post(
-      `https://availi.azurewebsites.net/Auth/login`,
+      `https://availi.azurewebsites.net/api/Auth/login`,
       body,
       {
         withCredentials: true,
