@@ -12,7 +12,7 @@ import SubmitModal from "./SubmitModal";
 import SurveyItem from "./SurveyItem";
 import SurveyModal from "./SurveyModal";
 
-const page = () => {
+const SurveyPage = () => {
   const user = useUserStore((state) => state.user);
   const { data, isLoading } = useQuery({
     queryKey: ["dates"],
@@ -101,4 +101,4 @@ const page = () => {
   );
 };
 
-export default withAuth(page);
+export default withAuth(SurveyPage);
