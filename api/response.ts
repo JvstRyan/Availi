@@ -40,7 +40,7 @@ export const createResponse = async ({ body }: { body: Response }) => {
 export const getResponseUsers = async () => {
   try {
     const response = await axios.get<ResponseUser[]>(
-      `https://availi.azurewebsites.net/Response/users`
+      `https://availi.azurewebsites.net/api/Response/users`
     );
     if (response && response.data) return response.data;
     else throw new Error("Fetching response users failed");
