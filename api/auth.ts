@@ -27,8 +27,7 @@ export const loginUsers = async ({
   try {
     const response = await axios.post(
       `https://availi.azurewebsites.net/api/Auth/login`,
-      body,
-      { withCredentials: true }
+      body
     );
     if (response && response.data) {
       const data = response.data;
