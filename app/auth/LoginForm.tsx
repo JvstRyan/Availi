@@ -14,15 +14,14 @@ const LoginForm = () => {
 
   const mutation = useMutation({
     mutationFn: loginUsers,
-    onSuccess: async () => {
-      const isAuthenticated = await checkAuth();
-      if (isAuthenticated) {
-        router.push("/Dashboard/survey");
-        toast.success("Je bent ingelogd", {
-          duration: 5000,
-          position: "top-center",
-        });
-      }
+    onSuccess: () => {
+      // const isAuthenticated = await checkAuth();
+      // if (isAuthenticated) {
+      router.push("/Dashboard/survey");
+      toast.success("Je bent ingelogd", {
+        duration: 5000,
+        position: "top-center",
+      });
 
       setLoginEmail("");
       setLoginPassword("");
