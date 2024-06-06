@@ -203,4 +203,4 @@ const Page = () => {
   );
 };
 
-export default adminAuth(Page);
+export default Page;

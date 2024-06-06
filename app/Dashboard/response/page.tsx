@@ -40,4 +40,4 @@ const ResponsePage = () => {
   );
 };
 
-export default adminAuth(ResponsePage);
+export default ResponsePage;
