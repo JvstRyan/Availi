@@ -35,12 +35,9 @@ export default function BasicModal({ handleSubmit, datesChosen }: Props) {
             <Typography align="center" fontSize={"15px"}>
               Weet je zeker dat je alles correct hebt ingevuld?
             </Typography>
-            <Box className="flex flex-col items-center">
+            <Box className="flex flex-col items-center justify-center">
               {datesChosen?.map((date, index) => (
-                <div
-                  key={index}
-                  className="flex items-center font-bold justify-center gap-16"
-                >
+                <div key={index} className="flex items-center font-bold gap-16">
                   <div>{`${date.day} ${date.month}`}</div>
                   <div>{`${date.weekDay}`}</div>
                 </div>
