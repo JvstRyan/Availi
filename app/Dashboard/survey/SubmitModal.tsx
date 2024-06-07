@@ -37,8 +37,9 @@ export default function BasicModal({ handleSubmit, datesChosen }: Props) {
             </Typography>
             <Box className="flex flex-col justify-center items-center">
               {datesChosen?.map((date, index) => (
-                <div key={index} className="flex items-center font-bold justify-center">
-                  {`${date.weekDay} ${date.day} ${date.month}`}
+                <div key={index} className="flex items-center font-bold justify-between w-full">
+                  <div>{`${date.day} ${date.month}`}</div>
+                  <div>{date.weekDay}</div>
                 </div>
               ))}
             </Box>
