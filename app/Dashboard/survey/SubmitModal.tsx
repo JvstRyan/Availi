@@ -4,7 +4,7 @@ import { CgDanger } from "react-icons/cg";
 
 type Props = {
   handleSubmit: (event: React.FormEvent) => void;
-  datesChosen?: Array<{ day: number; month: string }>;
+  datesChosen?: Array<{ day: number; month: string, weekDay: string }>;
 };
 
 export default function BasicModal({ handleSubmit, datesChosen }: Props) {
@@ -37,8 +37,11 @@ export default function BasicModal({ handleSubmit, datesChosen }: Props) {
             </Typography>
             <Box className="flex flex-col justify-center items-center">
               {datesChosen?.map((date, index) => (
-                <div key={index} className="flex items-center">
+                <div key={index} className="flex items-center font-bold justify-between">
+                  <div className="flex items-center">
                   {`${date.day} ${date.month}`}
+                  </div>
+                  {date.weekDay}
                 </div>
               ))}
             </Box>
