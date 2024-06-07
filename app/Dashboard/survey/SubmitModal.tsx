@@ -26,7 +26,7 @@ export default function BasicModal({ handleSubmit, datesChosen }: Props) {
         <Box className="absolute top-1/4 left-2/4 -translate-x-10 -translate-y-10 w-1/4 p-10  bg-white">
           <Box
             component={"article"}
-            className="flex flex-col items-center justify-center gap-2 w-full"
+            className="flex flex-col items-center justify-center gap-2"
           >
             <CgDanger size={"45px"} />
             <Typography fontWeight={"bold"} fontSize={"20px"}>
@@ -35,11 +35,11 @@ export default function BasicModal({ handleSubmit, datesChosen }: Props) {
             <Typography align="center" fontSize={"15px"}>
               Weet je zeker dat je alles correct hebt ingevuld?
             </Typography>
-            <Box className="flex flex-col items-center w-full">
+            <Box className="flex flex-col items-center">
               {datesChosen?.map((date, index) => (
                 <div
                   key={index}
-                  className="flex items-center font-bold justify-between w-full"
+                  className="flex items-center font-bold justify-center gap-16"
                 >
                   <div>{`${date.day} ${date.month}`}</div>
                   <div>{date.weekDay}</div>
