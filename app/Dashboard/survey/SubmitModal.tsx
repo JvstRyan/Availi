@@ -4,7 +4,7 @@ import { CgDanger } from "react-icons/cg";
 
 type Props = {
   handleSubmit: (event: React.FormEvent) => void;
-  datesChosen?: Array<{ day: number; month: string, weekDay: string }>;
+  datesChosen?: Array<{ day: number; month: string; weekDay: string }>;
 };
 
 export default function BasicModal({ handleSubmit, datesChosen }: Props) {
@@ -26,7 +26,7 @@ export default function BasicModal({ handleSubmit, datesChosen }: Props) {
         <Box className="absolute top-1/4 left-2/4 -translate-x-10 -translate-y-10 w-1/4 p-10  bg-white">
           <Box
             component={"article"}
-            className="flex flex-col items-center justify-center gap-2"
+            className="flex flex-col items-center justify-center gap-2 w-full"
           >
             <CgDanger size={"45px"} />
             <Typography fontWeight={"bold"} fontSize={"20px"}>
@@ -35,9 +35,12 @@ export default function BasicModal({ handleSubmit, datesChosen }: Props) {
             <Typography align="center" fontSize={"15px"}>
               Weet je zeker dat je alles correct hebt ingevuld?
             </Typography>
-            <Box className="flex flex-col justify-center items-center">
+            <Box className="flex flex-col items-center w-full">
               {datesChosen?.map((date, index) => (
-                <div key={index} className="flex items-center font-bold justify-between w-full">
+                <div
+                  key={index}
+                  className="flex items-center font-bold justify-between w-full"
+                >
                   <div>{`${date.day} ${date.month}`}</div>
                   <div>{date.weekDay}</div>
                 </div>
