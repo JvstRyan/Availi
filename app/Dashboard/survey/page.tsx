@@ -21,7 +21,7 @@ const SurveyPage = () => {
 
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
   const [userHasAnswered, setUserHasAnswered] = useState(false);
-  const [datesChosen, setDatesChosen] = useState<Array<{day: Number, month: string}>>([])
+  const [datesChosen, setDatesChosen] = useState<Array<{day: number, month: string}>>([])
 
   useEffect(() => {
     const fetchHasAnswered = async () => {
