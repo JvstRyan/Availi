@@ -1,8 +1,8 @@
-import React, { useEffect, ComponentType, useState } from "react";
-import { useRouter } from "next/navigation";
-import axios from "axios";
-import { CircularProgress } from "@mui/material";
 import useUserStore from "@/stores/userStore";
+import { CircularProgress } from "@mui/material";
+import { jwtDecode } from "jwt-decode";
+import { useRouter } from "next/navigation";
+import { ComponentType, useEffect, useState } from "react";
 
 const adminAuth = (WrappedComponent: ComponentType) => {
   const AdminAuthComponent: ComponentType = (props) => {
@@ -14,23 +14,31 @@ const adminAuth = (WrappedComponent: ComponentType) => {
     useEffect(() => {
       const checkAuth = async () => {
         try {
-          const response = await axios.get(
-            "https://availi.azurewebsites.net/api/Auth/authorize",
-            {
-              withCredentials: true,
+          const token = localStorage.getItem("jwtToken");
+          if (token) {
+            const decodedToken: any = jwtDecode(token);
+            const currentTime = Date.now() / 1000;
+            if (decodedToken.exp > currentTime) {
+              setIsAuthenticated(true);
+            } else {
+              // Token is expired
+              router.push("/auth");
             }
-          );
-
-          if (response.status === 200 && user?.userRole === "admin") {
-            setIsAuthenticated(true);
-          } else if (user?.userRole === "volunteer") {
+          } else {
+            // No token found
+            router.push("/auth");
+          }
+          if (user?.userRole === "volunteer") {
             router.push("/Dashboard/survey");
           } else if (user?.userRole === "guest") {
             router.push("/waiting");
+          } else if (user?.userRole === "admin") {
+            return true;
           } else {
             router.push("/auth");
           }
         } catch (error) {
+          console.error(error);
           router.push("/auth");
         } finally {
           setLoading(false);

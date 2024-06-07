@@ -3,7 +3,7 @@ import { getResponses } from "@/api/response";
 import { Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import ResponseItem from "./ResponseItem";
-import withAuth from "@/app/auth/withAuth";
+import adminAuth from "@/app/auth/adminAuth";
 
 export interface ReceivedResponse {
   dateId: string;
@@ -40,4 +40,4 @@ const ResponsePage = () => {
   );
 };
 
-export default withAuth(ResponsePage);
+export default adminAuth(ResponsePage);
