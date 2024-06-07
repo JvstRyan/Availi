@@ -9,6 +9,7 @@ const LogoutButton = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('jwtToken')
+    localStorage.removeItem('userRole')
     router.push("/auth");
   };
 
