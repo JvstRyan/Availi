@@ -22,7 +22,7 @@ const SurveyPage = () => {
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
   const [userHasAnswered, setUserHasAnswered] = useState(false);
   const [datesChosen, setDatesChosen] = useState<
-    Array<{ day: number; weekDay: string; month: string }>
+    Array<{ day: number; month: string; weekDay: string; }>
   >([]);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const SurveyPage = () => {
   };
 
   const handleChosenDates = (day: number, month: string, weekDay: string) => {
-    setDatesChosen((prevDates) => [...prevDates, { day, weekDay, month }]);
+    setDatesChosen((prevDates) => [...prevDates, { day, month, weekDay }]);
   };
 
   const queryClient = useQueryClient();

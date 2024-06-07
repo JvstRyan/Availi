@@ -11,7 +11,7 @@ type SurveyItemProps = {
   incomingDate: Date;
   dateId: string;
   onAnswerChange: (dateId: string, answer: boolean) => void;
-  onChosenDate: (day: number, weekDay: string, month: string) => void
+  onChosenDate: (day: number, month: string, weekDay: string) => void
 };
 
 const SurveyItem = ({
@@ -51,7 +51,7 @@ const SurveyItem = ({
                 const newAnswer = e.target.checked;
                 setAnswer(newAnswer);
                 onAnswerChange(dateId, newAnswer);
-                onChosenDate(day, weekDay, month)
+                onChosenDate(day, month, weekDay)
               }}
             />
           }

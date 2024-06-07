@@ -42,7 +42,7 @@ export default function BasicModal({ handleSubmit, datesChosen }: Props) {
                   className="flex items-center font-bold justify-center gap-16"
                 >
                   <div>{`${date.day} ${date.month}`}</div>
-                  <div>{date.weekDay}</div>
+                  <div>{`${date.weekDay}`}</div>
                 </div>
               ))}
             </Box>
