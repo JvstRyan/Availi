@@ -47,19 +47,5 @@ export const loginUsers = async ({
   }
 };
 
-export const logout = async () => {
-  try {
-    const response = await axios.post(
-      "https://availi.azurewebsites.net/api/Auth/logout",
-      {},
-      {
-        withCredentials: true,
-      }
-    );
-    if (response) return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 
