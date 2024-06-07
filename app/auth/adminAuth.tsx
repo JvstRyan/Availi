@@ -9,12 +9,12 @@ const adminAuth = (WrappedComponent: ComponentType) => {
     const router = useRouter();
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const userRole = localStorage.getItem("userRole");
 
     useEffect(() => {
       const checkAuth = async () => {
         try {
           const token = localStorage.getItem("jwtToken");
+          const userRole = localStorage.getItem("userRole");
           if (token) {
             const decodedToken: any = jwtDecode(token);
             const currentTime = Date.now() / 1000;
@@ -45,7 +45,7 @@ const adminAuth = (WrappedComponent: ComponentType) => {
         }
       };
       checkAuth();
-    }, [router, userRole]);
+    }, [router]);
 
     if (loading || !isAuthenticated) {
       return (

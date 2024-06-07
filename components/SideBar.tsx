@@ -15,11 +15,17 @@ import { usePathname } from "next/navigation";
 import LogoutButton from "./LogoutButton";
 import Profile from "./Profile";
 import withAuth from "@/app/auth/withAuth";
+import { useEffect, useState } from "react";
 
 const SideBar = () => {
   const drawerWidth = 300;
   const pathname = usePathname();
-  const userRole = localStorage.getItem("userRole");
+  const [userRole, setUserRole] = useState<string | null>(null);
+
+  useEffect(() => {
+    const role = localStorage.getItem("userRole");
+    setUserRole(role);
+  }, []);
 
   return (
     <Paper sx={{ display: "flex" }}>

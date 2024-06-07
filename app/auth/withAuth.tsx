@@ -1,4 +1,4 @@
-import useUserStore from "@/stores/userStore";
+
 import { CircularProgress } from "@mui/material";
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
@@ -9,12 +9,12 @@ const withAuth = (WrappedComponent: ComponentType) => {
     const router = useRouter();
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const userRole = localStorage.getItem("userRole");
 
     useEffect(() => {
       const checkAuth = async () => {
         try {
           const token = localStorage.getItem("jwtToken");
+          const userRole = localStorage.getItem("userRole");
           if (token) {
             const decodedToken: any = jwtDecode(token);
             const currentTime = Date.now() / 1000;
@@ -46,7 +46,7 @@ const withAuth = (WrappedComponent: ComponentType) => {
         }
       };
       checkAuth();
-    }, [router, userRole]);
+    }, [router]);
 
     if (loading || !isAuthenticated) {
       return (
