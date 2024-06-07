@@ -9,7 +9,7 @@ const withAuth = (WrappedComponent: ComponentType) => {
     const router = useRouter();
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const user = useUserStore((state) => state.user);
+    const userRole = localStorage.getItem("userRole");
 
     useEffect(() => {
       const checkAuth = async () => {
@@ -28,11 +28,11 @@ const withAuth = (WrappedComponent: ComponentType) => {
             // No token found
             router.push("/auth");
           }
-          if (user?.userRole === "guest") {
+          if (userRole === "guest") {
             router.push("/waiting");
           } else if (
-            user?.userRole === "volunteer" ||
-            user?.userRole === "admin"
+            userRole === "volunteer" ||
+            userRole === "admin"
           ) {
             return true;
           } else {
@@ -46,7 +46,7 @@ const withAuth = (WrappedComponent: ComponentType) => {
         }
       };
       checkAuth();
-    }, [router, user?.userRole]);
+    }, [router, userRole]);
 
     if (loading || !isAuthenticated) {
       return (

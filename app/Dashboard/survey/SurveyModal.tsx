@@ -10,11 +10,11 @@ export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const user = useUserStore((state) => state.user);
+  const userRole = localStorage.getItem("userRole");
 
   return (
     <div>
-      { user?.userRole === "admin" &&
+      { userRole === "admin" &&
       <Button
         onClick={handleOpen}
         variant="outlined"

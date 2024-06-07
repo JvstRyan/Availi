@@ -32,8 +32,8 @@ export const loginUsers = async ({
     if (response && response.data) {
       const data = response.data;
       localStorage.setItem('jwtToken', data.jwtToken)
+      localStorage.setItem('userRole', data.userRole)
       useUserStore.getState().setUser({
-        userRole: data.userRole,
         userName: data.userName,
         userEmail: data.email,
         userId: data.userId,

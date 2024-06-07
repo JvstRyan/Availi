@@ -9,7 +9,7 @@ const adminAuth = (WrappedComponent: ComponentType) => {
     const router = useRouter();
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const user = useUserStore((state) => state.user);
+    const userRole = localStorage.getItem("userRole");
 
     useEffect(() => {
       const checkAuth = async () => {
@@ -28,11 +28,11 @@ const adminAuth = (WrappedComponent: ComponentType) => {
             // No token found
             router.push("/auth");
           }
-          if (user?.userRole === "volunteer") {
+          if (userRole === "volunteer") {
             router.push("/Dashboard/survey");
-          } else if (user?.userRole === "guest") {
+          } else if (userRole === "guest") {
             router.push("/waiting");
-          } else if (user?.userRole === "admin") {
+          } else if (userRole === "admin") {
             return true;
           } else {
             router.push("/auth");
@@ -45,7 +45,7 @@ const adminAuth = (WrappedComponent: ComponentType) => {
         }
       };
       checkAuth();
-    }, [router, user?.userRole]);
+    }, [router, userRole]);
 
     if (loading || !isAuthenticated) {
       return (

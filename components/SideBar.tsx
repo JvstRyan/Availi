@@ -15,12 +15,11 @@ import { usePathname } from "next/navigation";
 import LogoutButton from "./LogoutButton";
 import Profile from "./Profile";
 import withAuth from "@/app/auth/withAuth";
-import useUserStore from "@/stores/userStore";
 
 const SideBar = () => {
   const drawerWidth = 300;
   const pathname = usePathname();
-  const user = useUserStore((state) => state.user);
+  const userRole = localStorage.getItem("userRole");
 
   return (
     <Paper sx={{ display: "flex" }}>
@@ -59,7 +58,7 @@ const SideBar = () => {
               {listItems.map((item, index) => {
                 const isActive = item.link === pathname;
                 const Icon = item.icon;
-                if (user?.userRole && item.role.includes(user?.userRole)) {
+                if (userRole && item.role.includes(userRole)) {
                   return (
                     <Link key={index} href={item.link}>
                       <ListItemButton

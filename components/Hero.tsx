@@ -17,13 +17,13 @@ const Hero = () => {
         beschikbaarheid van je collegas
       </p>
       <Link href="/Dashboard/survey">
-      <Button
-        variant="outlined"
-        color="secondary"
-        className="bg-gradient-primary w-60 h-12 font-bold mt-5 rounded-md text-md"
-      >
-        Start hier
-      </Button>
+        <Button
+          variant="outlined"
+          color="secondary"
+          className="bg-gradient-primary w-60 h-12 font-bold mt-5 rounded-md text-md"
+        >
+          Start hier
+        </Button>
       </Link>
     </section>
   );
