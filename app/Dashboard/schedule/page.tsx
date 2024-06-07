@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 
 import { handleSchedule } from "@/api/response";
-import adminAuth from "@/app/auth/adminAuth";
 import { useState } from "react";
 import { ReceivedResponse } from "../response/page";
 import ScheduleModal from "./ScheduleModal";

@@ -1,7 +1,7 @@
 import useUserStore from "@/stores/userStore";
 import { CircularProgress } from "@mui/material";
 import { jwtDecode } from "jwt-decode";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { ComponentType, useEffect, useState } from "react";
 
 const withAuth = (WrappedComponent: ComponentType) => {
