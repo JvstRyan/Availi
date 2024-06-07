@@ -21,7 +21,9 @@ const SurveyPage = () => {
 
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
   const [userHasAnswered, setUserHasAnswered] = useState(false);
-  const [datesChosen, setDatesChosen] = useState<Array<{day: number, month: string}>>([])
+  const [datesChosen, setDatesChosen] = useState<
+    Array<{ day: number; weekDay: string; month: string }>
+  >([]);
 
   useEffect(() => {
     const fetchHasAnswered = async () => {
@@ -41,10 +43,9 @@ const SurveyPage = () => {
     }));
   };
 
-  const handleChosenDates = (day: number, month: string) => 
-  {
-    setDatesChosen(prevDates => [...prevDates, {day, month}])
-  }
+  const handleChosenDates = (day: number, month: string, weekDay: string) => {
+    setDatesChosen((prevDates) => [...prevDates, { day, weekDay, month }]);
+  };
 
   const queryClient = useQueryClient();
 
@@ -92,7 +93,10 @@ const SurveyPage = () => {
                 onChosenDate={handleChosenDates}
               />
             ))}
-            <SubmitModal handleSubmit={handleSubmit} datesChosen={datesChosen} />
+            <SubmitModal
+              handleSubmit={handleSubmit}
+              datesChosen={datesChosen}
+            />
           </form>
         )}
         {isLoading && <CircularProgress color="secondary" />}
