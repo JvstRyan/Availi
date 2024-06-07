@@ -30,8 +30,11 @@ const withAuth = (WrappedComponent: ComponentType) => {
           }
           if (user?.userRole === "guest") {
             router.push("/waiting");
-          } else if (user?.userRole === "guest" || user?.userRole === "admin") {
-            router.push("Dashboard/survey");
+          } else if (
+            user?.userRole === "volunteer" ||
+            user?.userRole === "admin"
+          ) {
+            return true;
           } else {
             router.push("/auth");
           }
