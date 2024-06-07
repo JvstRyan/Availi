@@ -11,12 +11,14 @@ type SurveyItemProps = {
   incomingDate: Date;
   dateId: string;
   onAnswerChange: (dateId: string, answer: boolean) => void;
+  onChosenDate: (day: number, month: string) => void
 };
 
 const SurveyItem = ({
   incomingDate,
   dateId,
   onAnswerChange,
+  onChosenDate
 }: SurveyItemProps) => {
   const [answer, setAnswer] = useState(false);
 
@@ -49,6 +51,7 @@ const SurveyItem = ({
                 const newAnswer = e.target.checked;
                 setAnswer(newAnswer);
                 onAnswerChange(dateId, newAnswer);
+                onChosenDate(day, month)
               }}
             />
           }

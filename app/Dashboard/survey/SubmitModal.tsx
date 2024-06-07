@@ -4,9 +4,10 @@ import { CgDanger } from "react-icons/cg";
 
 type Props = {
   handleSubmit: (event: React.FormEvent) => void;
+  datesChosen?: Array<{ day: number; month: string }>;
 };
 
-export default function BasicModal({ handleSubmit }: Props) {
+export default function BasicModal({ handleSubmit, datesChosen }: Props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -34,6 +35,13 @@ export default function BasicModal({ handleSubmit }: Props) {
             <Typography align="center" fontSize={"15px"}>
               Weet je zeker dat je alles correct hebt ingevuld?
             </Typography>
+            <Box className="flex flex-col justify-center items-center">
+              {datesChosen?.map((date, index) => (
+                <div key={index} className="flex items-center">
+                  {`${date.day} ${date.month}`}
+                </div>
+              ))}
+            </Box>
             <Box
               component={"div"}
               className="flex justify-center items-center gap-5 mt-5"
