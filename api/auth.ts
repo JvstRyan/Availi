@@ -31,8 +31,7 @@ export const loginUsers = async ({
     );
     if (response && response.data) {
       const data = response.data;
-      console.log(response);
-      console.log(response.data);
+      localStorage.setItem('jwtToken', data.jwtToken)
       useUserStore.getState().setUser({
         userRole: data.userRole,
         userName: data.userName,
@@ -63,19 +62,4 @@ export const logout = async () => {
   }
 };
 
-export const checkAuth = async () => {
-  try {
-    const response = await axios.get(
-      "https://availi.azurewebsites.net/api/Auth/authorize",
-      {
-        withCredentials: true,
-      }
-    );
-    if (response && response.data) {
-      return true;
-    }
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
+

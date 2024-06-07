@@ -6,6 +6,7 @@ import { CircularProgress } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import UserCreationModal from "./UserCreationModal";
 import UserListItem from "./UserListItem";
+import withAuth from "@/app/auth/withAuth";
 
 const Page = () => {
   const { data, isLoading } = useQuery({
@@ -38,4 +39,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default withAuth(Page);

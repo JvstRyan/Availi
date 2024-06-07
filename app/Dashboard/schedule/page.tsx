@@ -15,6 +15,7 @@ import adminAuth from "@/app/auth/adminAuth";
 import { useState } from "react";
 import { ReceivedResponse } from "../response/page";
 import ScheduleModal from "./ScheduleModal";
+import withAuth from "@/app/auth/withAuth";
 
 interface User {
   userName: string;
@@ -203,4 +204,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default withAuth(Page);

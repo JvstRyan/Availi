@@ -1,4 +1,4 @@
-import { checkAuth, loginUsers } from "@/api/auth";
+import { loginUsers } from "@/api/auth";
 import { Box, Button, InputAdornment, TextField } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -15,14 +15,11 @@ const LoginForm = () => {
   const mutation = useMutation({
     mutationFn: loginUsers,
     onSuccess: () => {
-      // const isAuthenticated = await checkAuth();
-      // if (isAuthenticated) {
-      router.push("/Dashboard/survey");
       toast.success("Je bent ingelogd", {
         duration: 5000,
         position: "top-center",
       });
-
+      router.push("/Dashboard/survey");
       setLoginEmail("");
       setLoginPassword("");
       queryClient.invalidateQueries({ queryKey: ["users"] });

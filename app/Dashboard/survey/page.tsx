@@ -101,4 +101,4 @@ const SurveyPage = () => {
   );
 };
 
-export default SurveyPage;
+export default withAuth(SurveyPage);

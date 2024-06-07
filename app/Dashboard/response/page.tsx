@@ -4,6 +4,7 @@ import { Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import ResponseItem from "./ResponseItem";
 import adminAuth from "@/app/auth/adminAuth";
+import withAuth from "@/app/auth/withAuth";
 
 export interface ReceivedResponse {
   dateId: string;
@@ -40,4 +41,4 @@ const ResponsePage = () => {
   );
 };
 
-export default ResponsePage;
+export default withAuth(ResponsePage);
