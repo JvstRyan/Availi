@@ -1,11 +1,8 @@
 import { registerUsers } from "@/api/auth";
-import { Button, InputAdornment, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { FaUserLarge } from "react-icons/fa6";
-import { IoLockClosedSharp } from "react-icons/io5";
-import { MdEmail } from "react-icons/md";
 
 type registering = {
   setIsRegistering: (value: boolean) => void;

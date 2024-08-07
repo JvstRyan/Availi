@@ -1,15 +1,17 @@
 import { loginUsers } from "@/api/auth";
 import { Box, Button, TextField } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-const LoginForm = () => {
+type LoggingIn = {
+  setLoggingIn: (value: boolean) => void;
+}
+
+const LoginForm = ({setLoggingIn}: LoggingIn) => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const queryClient = useQueryClient();
@@ -27,7 +29,7 @@ const LoginForm = () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
     onError: () => {
-      setIsLoading(false);
+      setLoggingIn(false);
       toast.error("Email of watchwoord klopt niet.", {
         duration: 5000,
         position: "top-center",
@@ -36,7 +38,7 @@ const LoginForm = () => {
   });
 
   const loginUser = async () => {
-    setIsLoading(true);
+    setLoggingIn(true);
     await mutation.mutateAsync({
       body: { email: loginEmail, password: loginPassword },
     });
@@ -44,13 +46,6 @@ const LoginForm = () => {
 
   return (
     <>
-      <Toaster />
-
-      {isLoading ? (
-        <Box className="flex justify-center items-center mt-10">
-          <CircularProgress />
-        </Box>
-      ) : (
         <Box
           component={"form"}
           className="flex flex-col items-center mt-10 gap-8"
@@ -84,7 +79,6 @@ const LoginForm = () => {
             Inloggen
           </Button>
         </Box>
-      )}
     </>
   );
 };
