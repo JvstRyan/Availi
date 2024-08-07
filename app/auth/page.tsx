@@ -17,7 +17,7 @@ export default function Login() {
     <>
       <Toaster />
       {isLoggingIn ? (
-        <Box className="flex justify-center items-center mt-10">
+        <Box className="flex justify-center items-center h-screen">
           <CircularProgress />
         </Box>
       ) : (
