@@ -1,6 +1,7 @@
 import { loginUsers } from "@/api/auth";
 import { Box, Button, TextField } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -8,6 +9,7 @@ import toast, { Toaster } from "react-hot-toast";
 const LoginForm = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const queryClient = useQueryClient();
@@ -25,6 +27,7 @@ const LoginForm = () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
     onError: () => {
+      setIsLoading(false);
       toast.error("Email of watchwoord klopt niet.", {
         duration: 5000,
         position: "top-center",
@@ -33,6 +36,7 @@ const LoginForm = () => {
   });
 
   const loginUser = async () => {
+    setIsLoading(true);
     await mutation.mutateAsync({
       body: { email: loginEmail, password: loginPassword },
     });
@@ -41,39 +45,46 @@ const LoginForm = () => {
   return (
     <>
       <Toaster />
-      <Box
-        component={"form"}
-        className="flex flex-col items-center mt-10 gap-8"
-        onSubmit={(e) => {
-          e.preventDefault();
-          loginUser();
-        }}
-      >
-        <TextField
-          required
-          color="primary"
-          className="w-96"
-          type="email"
-          label="Email"
-          onChange={(e) => setLoginEmail(e.target.value)}
-        />
-        <TextField
-          required
-          color="primary"
-          className="w-96"
-          type="password"
-          label="Wachtwoord"
-          onChange={(e) => setLoginPassword(e.target.value)}
-        />
-        <Button
-          variant="contained"
-          color="secondary"
-          className="bg-gradient-primary font-bold text-white h-12 w-96 mt-5"
-          type="submit"
+
+      {isLoading ? (
+        <Box className="flex justify-center items-center mt-10">
+          <CircularProgress />
+        </Box>
+      ) : (
+        <Box
+          component={"form"}
+          className="flex flex-col items-center mt-10 gap-8"
+          onSubmit={(e) => {
+            e.preventDefault();
+            loginUser();
+          }}
         >
-          Inloggen
-        </Button>
-      </Box>
+          <TextField
+            required
+            color="primary"
+            className="w-96"
+            type="email"
+            label="Email"
+            onChange={(e) => setLoginEmail(e.target.value)}
+          />
+          <TextField
+            required
+            color="primary"
+            className="w-96"
+            type="password"
+            label="Wachtwoord"
+            onChange={(e) => setLoginPassword(e.target.value)}
+          />
+          <Button
+            variant="contained"
+            color="secondary"
+            className="bg-gradient-primary font-bold text-white h-12 w-96 mt-5"
+            type="submit"
+          >
+            Inloggen
+          </Button>
+        </Box>
+      )}
     </>
   );
 };
