@@ -14,11 +14,11 @@ const Contact = () => {
     if (form.current) {
       emailjs
         .sendForm(
-          process.env.SERVICE_ID || "default",
-          process.env.CONTACT_ID || "default",
+          process.env.NEXT_PUBLIC_SERVICE_ID || "default",
+          process.env.NEXT_PUBLIC_CONTACT_ID || "default",
           form.current,
           {
-            publicKey: process.env.PUBLIC_ID,
+            publicKey: process.env.NEXT_PUBLIC_ID,
           }
         )
         .then(
@@ -27,7 +27,7 @@ const Contact = () => {
               duration: 5000,
               position: "top-center",
             });
-            form.current?.reset();
+            if (form.current) form.current.reset();
           },
           (error) => {
             toast.error("Iets ging er mis, probeer het opnieuw.", {
