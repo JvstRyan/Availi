@@ -3,11 +3,13 @@ import Hero from "@/components/Hero"
 import NavBar from "@/components/NavBar"
 import { Box } from "@mui/material"
 import Image from "next/image"
+import { Toaster } from "react-hot-toast"
 
 
 const Page = () => {
   return (
     <>
+    <Toaster />
     <NavBar />
     <Hero />
     <Box component={'section'} className="flex justify-center items-center p-20">

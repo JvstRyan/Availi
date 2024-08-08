@@ -3,6 +3,7 @@ import { contactItems } from "@/constants";
 import { Box, Button, TextField } from "@mui/material";
 import emailjs from "@emailjs/browser";
 import { FormEvent, useRef } from "react";
+import toast from "react-hot-toast";
 
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
@@ -12,15 +13,27 @@ const Contact = () => {
 
     if (form.current) {
       emailjs
-        .sendForm("service_ihenvf7", "contact_form", form.current, {
-          publicKey: "su6zdCMXXUVcjpCSn",
-        })
+        .sendForm(
+          process.env.SERVICE_ID || "default",
+          process.env.CONTACT_ID || "default",
+          form.current,
+          {
+            publicKey: process.env.PUBLIC_ID,
+          }
+        )
         .then(
           () => {
-            console.log("Success!");
+            toast.success("Email verstuurd!", {
+              duration: 5000,
+              position: "top-center",
+            });
+            form.current?.reset();
           },
           (error) => {
-            console.log("Failed..", error.text);
+            toast.error("Iets ging er mis, probeer het opnieuw.", {
+              duration: 5000,
+              position: "top-center",
+            });
           }
         );
     }
