@@ -63,6 +63,7 @@ const Contact = () => {
                 label="Naam"
                 type="text"
                 name="user_name"
+                required
               ></TextField>
               <TextField
                 variant="outlined"
@@ -70,6 +71,7 @@ const Contact = () => {
                 label="Email"
                 type="email"
                 name="user_email"
+                required
               ></TextField>
             </Box>
             <TextField
@@ -78,11 +80,13 @@ const Contact = () => {
               label="Onderwerp"
               type="text"
               name="subject"
+              required
             ></TextField>
             <textarea
               placeholder="Bericht..."
               className="focus:outline-none border-solid border rounded-sm border-formbord pl-3 pt-3 "
               name="message"
+              required
             />
             <Button
               variant="outlined"
