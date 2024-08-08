@@ -1,8 +1,31 @@
 "use client";
 import { contactItems } from "@/constants";
 import { Box, Button, TextField } from "@mui/material";
+import emailjs from "@emailjs/browser";
+import { FormEvent, useRef } from "react";
 
 const Contact = () => {
+  const form = useRef<HTMLFormElement>(null);
+
+  const sendEmail = (e: FormEvent) => {
+    e.preventDefault();
+
+    if (form.current) {
+      emailjs
+        .sendForm("service_ihenvf7", "contact_form", form.current, {
+          publicKey: "su6zdCMXXUVcjpCSn",
+        })
+        .then(
+          () => {
+            console.log("Success!");
+          },
+          (error) => {
+            console.log("Failed..", error.text);
+          }
+        );
+    }
+  };
+
   return (
     <>
       <section className="flex justify-center items-center p-20 mt-10 ">
@@ -16,7 +39,8 @@ const Contact = () => {
           <h2 className="text-2xl font-medium">Get in touch</h2>
           <Box
             component="form"
-            onClick={(e) => e.preventDefault()}
+            ref={form}
+            onSubmit={sendEmail}
             className="flex flex-col gap-5"
           >
             <Box component={"article"} className="flex gap-4">
@@ -24,24 +48,32 @@ const Contact = () => {
                 variant="outlined"
                 color="primary"
                 label="Naam"
+                type="text"
+                name="user_name"
               ></TextField>
               <TextField
                 variant="outlined"
                 color="primary"
                 label="Email"
+                type="email"
+                name="user_email"
               ></TextField>
             </Box>
             <TextField
               variant="outlined"
               color="primary"
               label="Onderwerp"
+              type="text"
+              name="subject"
             ></TextField>
             <textarea
               placeholder="Bericht..."
               className="focus:outline-none border-solid border rounded-sm border-formbord pl-3 pt-3 "
+              name="message"
             />
             <Button
               variant="outlined"
+              type="submit"
               color="secondary"
               className="bg-gradient-primary h-10 w-40 font-bold"
             >
